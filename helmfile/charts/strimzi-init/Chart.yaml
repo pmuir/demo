@@ -1,0 +1,6 @@
+apiVersion: v1
+appVersion: "latest"
+description: Chart for strimzi-init custom resource
+name: strimzi-init
+version: 0.0.0-latest
+
