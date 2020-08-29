@@ -1,3 +1,0 @@
-helmfiles:
-  - path: ./strimzi.yaml
-  - path: ./debezium.yaml

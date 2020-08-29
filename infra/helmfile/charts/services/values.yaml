@@ -1,0 +1,13 @@
+connect:
+  name: demo-connect
+  image:
+    repository: pmuir/connect-debezium
+    tag: 1.0.3
+  kafka:
+    name: demo-kafka
+  credentials:
+    secretName: connect-credentials
+connectors: []
+kafka:
+  name: demo-kafka
+  version: 2.5.0

@@ -1,0 +1,24 @@
+repositories:
+- name: strimzi
+  url: https://strimzi.io/charts/
+- name: "zloeber"
+  url: "git+https://github.com/zloeber/helm-namespace@chart"
+releases:
+- name: namespace-services
+  # Strimzi needs to watch namespace. As this creates a namespace it will not exist yet so we use 'kube-system'
+  #  which should exist in all clusters.
+  chart: zloeber/namespace
+  namespace: kube-system
+  wait: true
+  values:
+  - namespaces:
+    - services
+    helmResourcePolicy: delete
+- name: strimzi
+  namespace: strimzi
+  createNamespace: true
+  chart: strimzi/strimzi-kafka-operator
+  version: 0.18.0
+  values:
+  - watchNamespaces:
+    - services

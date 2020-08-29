@@ -1,8 +1,0 @@
-repositories:
-- name: stable
-  url: https://kubernetes-charts.storage.googleapis.com
-releases:
-- name: mysql
-  namespace: debezium
-  createNamespace: true
-  chart: ./charts/example-mysql

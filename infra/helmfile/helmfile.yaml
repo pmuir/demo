@@ -1,0 +1,11 @@
+helmfiles:
+  - path: external-secrets.yaml
+    values:
+      - values.yaml
+      - generated.yaml
+  - path: gcloud-sql-proxy.yaml
+    values:
+      - values.yaml
+      - generated.yaml
+  - strimzi.yaml
+  - services.yaml

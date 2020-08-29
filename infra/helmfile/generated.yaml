@@ -1,0 +1,18 @@
+##################################################
+# WARNING: This file is overwritten by terraform #
+# Make any changes in values.yaml             #
+##################################################
+
+"database":
+  "mysqlPropertiesSecretName": "mysql-properties"
+  "name": "database"
+  "port": 5432
+  "project": "pmuir-dev"
+  "region": "europe-west1"
+  "serviceAccountSecretName": "database-service-account-key"
+"externalSecrets":
+  "googleServiceAccount": "externalsecrets@pmuir-dev.iam.gserviceaccount.com"
+  "kubernetesServiceAccount": "external-secrets"
+  "namespace": "external-secrets"
+"gcp":
+  "project": "pmuir-dev"

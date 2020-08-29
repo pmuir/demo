@@ -1,0 +1,22 @@
+{{- range .Values.connectors }}
+apiVersion: "kafka.strimzi.io/v1alpha1"
+kind: "KafkaConnector"
+metadata:
+  name: {{ .name }}
+  labels:
+    strimzi.io/cluster: {{ $.Values.connect.name }}
+spec:
+  class: io.debezium.connector.mysql.MySqlConnector
+  tasksMax: 1
+  config:
+    database.hostname: gcloud-sqlproxy.database
+    database.port: "5432"
+    database.user: "${file:/opt/kafka/external-configuration/connector-config/debezium-mysql-credentials.properties:mysql_username}"
+    database.password: "${file:/opt/kafka/external-configuration/connector-config/debezium-mysql-credentials.properties:mysql_password}"
+    database.server.id: "184054"
+    database.server.name: {{ .name }}
+    database.whitelist: {{ .databaseName }}
+    database.history.kafka.bootstrap.servers: "{{ $.Values.kafka.name }}-kafka-bootstrap:9092"
+    database.history.kafka.topic: "schema-changes.{{ .databaseName }}"
+    include.schema.changes: "true"
+{{- end }}

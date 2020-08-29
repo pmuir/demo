@@ -1,0 +1,9 @@
+repositories:
+releases:
+  - name: services
+    namespace: services
+    createNamespace: true
+    chart: ./charts/services
+    values:
+    - values.yaml
+    - generated.yaml
