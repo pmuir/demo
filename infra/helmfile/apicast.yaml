@@ -1,0 +1,34 @@
+repositories:
+- name: incubator
+  url:  https://kubernetes-charts-incubator.storage.googleapis.com
+releases:
+- name: apicast
+  namespace: olm
+  createNamespace: true
+  chart: incubator/raw
+  version: 0.2.3
+  values:
+  - resources:
+    - apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: apicast
+    - apiVersion: operators.coreos.com/v1
+      kind: OperatorGroup
+      metadata:
+        name: operatorgroup
+        namespace: apicast
+      spec:
+        targetNamespaces:
+          - apicast
+          - services
+    - apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        name: my-apicast-community-operator
+        namespace: apicast
+      spec:
+        channel: stable
+        name: apicast-community-operator
+        source: operatorhubio-catalog
+        sourceNamespace: olm

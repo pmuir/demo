@@ -1,0 +1,5 @@
+releases:
+- name: olm
+  namespace: olm-definition
+  createNamespace: true
+  chart: ./charts/olm

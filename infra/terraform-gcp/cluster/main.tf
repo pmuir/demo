@@ -13,6 +13,9 @@ resource "google_container_cluster" "primary" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+  release_channel {
+    channel = "REGULAR"
+  }
 
   master_auth {
     username = ""

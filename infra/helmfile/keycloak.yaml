@@ -1,0 +1,33 @@
+repositories:
+- name: incubator
+  url:  https://kubernetes-charts-incubator.storage.googleapis.cokub
+releases:
+- name: keycloak
+  namespace: olm
+  createNamespace: true
+  chart: incubator/raw
+  version: 0.2.3
+  values:
+  - resources:
+    - apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: my-keycloak-operator
+    - apiVersion: operators.coreos.com/v1
+      kind: OperatorGroup
+      metadata:
+        name: operatorgroup
+        namespace: my-keycloak-operator
+      spec:
+        targetNamespaces:
+          - my-keycloak-operator
+    - apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        name: my-keycloak-operator
+        namespace: my-keycloak-operator
+      spec:
+        channel: alpha
+        name: keycloak-operator
+        source: operatorhubio-catalog
+        sourceNamespace: olm

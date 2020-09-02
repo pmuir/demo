@@ -1,4 +1,6 @@
 helmfiles:
+  - olm-crds.yaml
+  - olm.yaml
   - path: external-secrets.yaml
     values:
       - values.yaml
@@ -8,4 +10,6 @@ helmfiles:
       - values.yaml
       - generated.yaml
   - strimzi.yaml
+  - keycloak.yaml
+  - apicast.yaml
   - services.yaml

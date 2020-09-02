@@ -14,6 +14,7 @@ releases:
   - namespaces:
     - services
     helmResourcePolicy: delete
+# The strimzi installed by the OLM is missing CRDs
 - name: strimzi
   namespace: strimzi
   createNamespace: true
