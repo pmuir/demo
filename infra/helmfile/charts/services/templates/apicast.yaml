@@ -1,0 +1,9 @@
+apiVersion: apps.3scale.net/v1alpha1
+kind: APIcast
+metadata:
+  name: my-apicast
+  # The operator seems to only work on the same namespace it's installed into
+  namespace: apicast
+spec:
+  embeddedConfigurationSecretRef:
+    name: apicast-credentials

@@ -2,7 +2,7 @@ repositories:
 - name: incubator
   url:  https://kubernetes-charts-incubator.storage.googleapis.com
 releases:
-- name: apicast
+- name: apicast-operator
   namespace: olm
   createNamespace: true
   chart: incubator/raw
@@ -21,7 +21,6 @@ releases:
       spec:
         targetNamespaces:
           - apicast
-          - services
     - apiVersion: operators.coreos.com/v1alpha1
       kind: Subscription
       metadata:
