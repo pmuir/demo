@@ -1,0 +1,10 @@
+releases:
+- name: "letsencrypt-issuers"
+  namespace: "{{ .Values.cbp.namespace }}"
+  chart: "./charts/letsencrypt-issuers"
+  force: true
+  needs:
+    - "default/cbp-namespace"
+  values:
+    - email: "{{ .Values.certManager.email}}"
+      projectId: {{ .Values.gcp.projectId }}

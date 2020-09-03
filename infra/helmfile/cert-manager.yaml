@@ -1,0 +1,25 @@
+repositories:
+  - name: charts.jetstack.io
+    url: https://charts.jetstack.io
+
+releases:
+  - name: "cert-manager-crds"
+    namespace: "{{ .Values.certManager.namespace }}"
+    chart: "./charts/cert-manager-crds"
+    createNamespace: true
+    wait: true
+  - name: "cert-manager"
+    namespace: "{{ .Values.certManager.namespace }}"
+    chart: "charts.jetstack.io/cert-manager"
+    version: "{{ .Values.certManager.version }}"
+    createNamespace: true
+    wait: true
+    values:
+      - serviceAccount:
+          name: "{{ .Values.certManager.kubernetesServiceAccount }}"
+          annotations:
+            "iam.gke.io/gcp-service-account": "{{ .Values.certManager.googleServiceAccount }}"
+        extraArgs:
+          - --issuer-ambient-credentials
+    needs:
+      - "{{ .Values.certManager.namespace }}/cert-manager-crds"

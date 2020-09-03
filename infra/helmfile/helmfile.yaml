@@ -1,15 +1,27 @@
 helmfiles:
-  - olm-crds.yaml
-  - olm.yaml
-  - path: external-secrets.yaml
-    values:
-      - values.yaml
-      - generated.yaml
-  - path: gcloud-sql-proxy.yaml
-    values:
-      - values.yaml
-      - generated.yaml
-  - strimzi.yaml
-  - keycloak.yaml
-  - apicast.yaml
-  - services.yaml
+- path: cert-manager.yaml
+  values:
+  - values.yaml
+  - generated.yaml
+- path: letsencryt-issuers.yaml
+  values:
+  - values.yaml
+  - generated.yaml
+- path: nginx-ingress.yaml
+  values:
+  - values.yaml
+  - generated.yaml
+- path: olm-crds.yaml
+- path: olm.yaml
+- path: external-secrets.yaml
+  values:
+  - values.yaml
+  - generated.yaml
+- path: gcloud-sql-proxy.yaml
+  values:
+  - values.yaml
+  - generated.yaml
+- path: strimzi.yaml
+- path: keycloak.yaml
+- path: apicast.yaml
+- path: services.yaml

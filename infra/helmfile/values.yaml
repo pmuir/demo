@@ -3,3 +3,8 @@ connectors:
   databaseName: inventory
 externalSecrets:
   version: 5.2.0
+ingress:
+  namespace: ingress
+certManager:
+  email: pmuir@bleepbleep.org.uk
+  version: v0.14.0

@@ -41,3 +41,24 @@ variable "database_region" {
 variable "database_port" {
   description = "The port the Cloud SQL database is using"
 }
+
+
+variable "load_balancer_ip" {
+  description = "The IP address of the cluster load balancer"
+}
+
+variable "fqdn" {
+  description = "The FQDN of the cluster load balancer"
+}
+
+variable "cert_manager_kubernetes_service_account" {
+  description = "The Kubernetes Service Account used by Cert Manager"
+}
+
+variable "cert_manager_google_service_account" {
+  description = "The email address of the GCP Service Account used for Cert Manager"
+}
+
+variable "cert_manager_namespace" {
+  description = "The Kubernetes namespace used by cert manager"
+}

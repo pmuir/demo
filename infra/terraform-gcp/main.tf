@@ -23,6 +23,13 @@ resource "google_project_service" "secretmanager_api" {
   disable_on_destroy = false
 }
 
+module "networking" {
+  source = "./networking"
+  host_name = local.host_name
+  gcp_project = local.gcp_project
+  suffix = "g.bleepbleep.org.uk"
+}
+
 module "cluster" {
   source = "./cluster"
   gcp_project = local.gcp_project
@@ -57,6 +64,11 @@ module "helmfile" {
   database_port = module.database.database_port
   database_project = module.database.database_project
   database_region = module.database.database_region
+  fqdn = module.networking.fqdn
+  load_balancer_ip = module.networking.load_balancer
+  cert_manager_google_service_account = module.networking.cert_manager_google_service_account
+  cert_manager_kubernetes_service_account = module.networking.cert_manager_kubernetes_service_account
+  cert_manager_namespace = module.networking.cert_manager_namespace
 }
 
 module "shell" {

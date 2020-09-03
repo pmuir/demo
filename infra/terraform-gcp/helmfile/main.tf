@@ -17,6 +17,15 @@ locals {
       region: var.database_region
       port: var.database_port
     }
+    loadBalancer: {
+      ip: var.load_balancer_ip
+      fqdn: var.fqdn
+    }
+    certManager: {
+      googleServiceAccount: var.cert_manager_google_service_account
+      kubernetesServiceAccount: var.cert_manager_kubernetes_service_account
+      namespace: var.cert_manager_namespace
+    }
   }
 }
 
