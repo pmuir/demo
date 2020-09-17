@@ -3,7 +3,7 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
-- path: letsencryt-issuers.yaml
+- path: letsencrypt-issuers.yaml
   values:
   - values.yaml
   - generated.yaml
@@ -21,6 +21,10 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
+- path: keycloak-gcloud-sql-proxy.yaml
+  values:
+    - values.yaml
+    - generated.yaml
 - path: strimzi.yaml
 - path: keycloak.yaml
 - path: apicast.yaml

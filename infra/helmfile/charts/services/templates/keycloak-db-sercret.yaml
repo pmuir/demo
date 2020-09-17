@@ -1,0 +1,17 @@
+apiVersion: "kubernetes-client.io/v1"
+kind: ExternalSecret
+metadata:
+  name: keycloak-db-secret
+spec:
+  backendType: gcpSecretsManager
+  projectId: {{ .Values.gcp.project }}
+  template:
+    data:
+      POSTGRES_DATABASE: {{ "postgres" | b64enc }}
+      POSTGRES_EXTERNAL_ADDRESS: {{ "keycloak-sqlproxy-gcloud-sqlproxy.services.svc.cluster.local" | b64enc }}
+      POSTGRES_EXTERNAL_PORT: {{ "5432" | b64enc }}
+      POSTGRES_USERNAME: {{ .Values.keycloakDatabase.username | b64enc }}
+  data:
+  - key: {{ .Values.keycloakDatabase.passwordSecretName }}
+    version: latest
+    name: POSTGRES_PASSWORD

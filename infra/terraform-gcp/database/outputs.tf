@@ -21,3 +21,11 @@ output "database_region" {
 output "database_port" {
   value = var.service_port
 }
+
+output "database_username" {
+  value = var.username
+}
+
+output "database_password_secret_name" {
+  value = google_secret_manager_secret.database_password.secret_id
+}

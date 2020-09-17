@@ -49,6 +49,17 @@ module "database" {
   source = "./database"
   project = local.gcp_project
   external_secrets_google_service_account_email = module.secrets.external_secrets_google_service_account_email
+  binary_log_enabled = true
+  depends_on = [ module.secrets ]
+}
+
+module "keycloak_database" {
+  source = "./database"
+  name = "keycloak-database"
+  database_version = "POSTGRES_10"
+  username = "postgres"
+  project = local.gcp_project
+  external_secrets_google_service_account_email = module.secrets.external_secrets_google_service_account_email
   depends_on = [ module.secrets ]
 }
 
@@ -56,7 +67,7 @@ module "helmfile" {
   source = "./helmfile"
   name = local.gcp_project
   external_secrets_google_service_account_email = module.secrets.external_secrets_google_service_account_email
-  external_secrets_kuberentes_service_account = local.external_secrets_kubernetes_service_account
+  external_secrets_kubernetes_service_account = local.external_secrets_kubernetes_service_account
   external_secrets_namespace = local.external_secrets_namespace
   database_service_account_secret_name = module.database.service_account_secret_name
   mysql_properties_secret_name = module.database.mysql_properties_password_secret_name
@@ -64,6 +75,13 @@ module "helmfile" {
   database_port = module.database.database_port
   database_project = module.database.database_project
   database_region = module.database.database_region
+  keycloak_database_service_account_secret_name = module.keycloak_database.service_account_secret_name
+  keycloak_database_username = module.keycloak_database.database_username
+  keycloak_database_password_secret_name = module.keycloak_database.database_password_secret_name
+  keycloak_database_name = module.keycloak_database.database_name
+  keycloak_database_port = module.keycloak_database.database_port
+  keycloak_database_project = module.keycloak_database.database_project
+  keycloak_database_region = module.keycloak_database.database_region
   fqdn = module.networking.fqdn
   load_balancer_ip = module.networking.load_balancer
   cert_manager_google_service_account = module.networking.cert_manager_google_service_account

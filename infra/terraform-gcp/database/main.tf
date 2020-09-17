@@ -26,7 +26,7 @@ resource "google_sql_database_instance" "database" {
     backup_configuration {
       enabled = true
       start_time = "18:00"
-      binary_log_enabled = true
+      binary_log_enabled = var.binary_log_enabled
     }
   }
 }
@@ -35,8 +35,7 @@ resource "google_sql_database_instance" "database" {
 
 resource "random_password" "password" {
   length = 16
-  special = true
-  override_special = "_%@"
+  special = false
 }
 
 resource "google_sql_user" "user" {
@@ -47,8 +46,8 @@ resource "google_sql_user" "user" {
 
 resource "google_service_account" "service_account" {
   project = var.project
-  account_id = var.service_account_id
-  display_name = "CloudSQL Service Account"
+  account_id = local.service_account_id
+  display_name = "${var.name} CloudSQL Service Account"
 }
 
 resource "google_service_account_key" "service_account_key" {
@@ -58,7 +57,7 @@ resource "google_service_account_key" "service_account_key" {
 resource "google_secret_manager_secret" "database_password" {
   provider = google-beta
 
-  secret_id = "database-password"
+  secret_id = local.password_secret_id
 
   replication {
     automatic = true
@@ -82,7 +81,7 @@ resource "google_secret_manager_secret_version" "database_password_version" {
 
 resource "google_secret_manager_secret" "mysql_properties" {
 
-  secret_id = "mysql-properties"
+  secret_id = local.mysql_properties_secret_id
 
   replication {
     automatic = true
@@ -105,7 +104,7 @@ resource "google_secret_manager_secret_version" "mysql_properties_version" {
 resource "google_secret_manager_secret" "database_service_account_key" {
   provider = google-beta
 
-  secret_id = "database-service-account-key"
+  secret_id = local.database_service_account_key_secret_id
 
   replication {
     automatic = true
@@ -128,8 +127,8 @@ resource "google_secret_manager_secret_version" "database_service_account_key_ve
   secret_data = google_service_account_key.service_account_key.private_key
 }
 
-resource "google_project_iam_binding" "iam_binding" {
+resource "google_project_iam_member" "iam_binding_member" {
   project      = var.project
-  members      = ["serviceAccount:${google_service_account.service_account.email}"]
+  member      = "serviceAccount:${google_service_account.service_account.email}"
   role         = "roles/cloudsql.client"
 }

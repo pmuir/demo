@@ -1,0 +1,40 @@
+repositories:
+- name: charts.rimusz.net
+  url: https://charts.rimusz.net
+- name: incubator
+  url: https://kubernetes-charts-incubator.storage.googleapis.com
+
+releases:
+- name: "keycloak-sqlproxy"
+  namespace: services
+  createNamespace: true
+  chart: "charts.rimusz.net/gcloud-sqlproxy"
+  values:
+  - existingSecret: keycloak-sqlproxy-secret
+    existingSecretKey: "credentials.json"
+    cloudsql:
+      instances:
+        - instance: "{{ .Values.keycloakDatabase.name }}"
+          project: "{{ .Values.keycloakDatabase.project }}"
+          region: "{{ .Values.keycloakDatabase.region }}"
+          port: {{ .Values.keycloakDatabase.port }}
+          instanceShortName: keycloak-sql
+  - resources:
+- name: keycloak-sqlproxy-secret
+  chart: incubator/raw
+  namespace: services
+  createNamespace: true
+  values:
+    - resources:
+        - apiVersion: "kubernetes-client.io/v1"
+          kind: ExternalSecret
+          metadata:
+            name: keycloak-sqlproxy-secret
+          spec:
+            backendType: gcpSecretsManager
+            projectId: {{ .Values.gcp.project }}
+            data:
+              - key: {{ .Values.keycloakDatabase.serviceAccountSecretName }}
+                version: latest
+                name: credentials.json
+                isBinary: true

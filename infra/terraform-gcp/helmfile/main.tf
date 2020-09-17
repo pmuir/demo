@@ -6,7 +6,7 @@ locals {
     }
     externalSecrets: {
       namespace: var.external_secrets_namespace
-      kubernetesServiceAccount: var.external_secrets_kuberentes_service_account
+      kubernetesServiceAccount: var.external_secrets_kubernetes_service_account
       googleServiceAccount: var.external_secrets_google_service_account_email
     }
     database: {
@@ -16,6 +16,15 @@ locals {
       project: var.database_project
       region: var.database_region
       port: var.database_port
+    }
+    keycloakDatabase: {
+      username: var.keycloak_database_username
+      passwordSecretName: var.keycloak_database_password_secret_name
+      serviceAccountSecretName: var.keycloak_database_service_account_secret_name
+      name: var.keycloak_database_name
+      project: var.keycloak_database_project
+      region: var.keycloak_database_region
+      port: var.keycloak_database_port
     }
     loadBalancer: {
       ip: var.load_balancer_ip

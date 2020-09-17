@@ -12,6 +12,10 @@ variable "database_version" {
   default = "MYSQL_5_6"
 }
 
+variable "binary_log_enabled" {
+  default = false
+}
+
 variable "tier" {
   description = "the tier to run the database in"
   default = "db-f1-micro"
@@ -20,12 +24,6 @@ variable "tier" {
 variable "username" {
   description = "the username for the created user"
   default = "mysql"
-}
-
-variable "service_account_id" {
-  description = "The service account ID for accessing the database via proxy"
-  type = string
-  default = "cloudsql"
 }
 
 variable "external_secrets_google_service_account_email" {

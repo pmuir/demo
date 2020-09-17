@@ -8,7 +8,7 @@
   "kubernetesServiceAccount": "cert-manager"
   "namespace": "cert-manager"
 "database":
-  "mysqlPropertiesSecretName": "mysql-properties"
+  "mysqlPropertiesSecretName": "database-mysql-proerties"
   "name": "database"
   "port": 5432
   "project": "pmuir-dev"
@@ -20,6 +20,14 @@
   "namespace": "external-secrets"
 "gcp":
   "project": "pmuir-dev"
+"keycloakDatabase":
+  "name": "keycloak-database"
+  "passwordSecretName": "keycloak-database-database-password"
+  "port": 5432
+  "project": "pmuir-dev"
+  "region": "europe-west1"
+  "serviceAccountSecretName": "keycloak-database-service-account-key"
+  "username": "postgres"
 "loadBalancer":
   "fqdn": "demo.g.bleepbleep.org.uk"
   "ip": "35.241.153.243"

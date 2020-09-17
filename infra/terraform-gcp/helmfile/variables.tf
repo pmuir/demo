@@ -14,7 +14,7 @@ variable "external_secrets_namespace" {
   description = "The Kuberntes namespace used by External Secrets"
 }
 
-variable "external_secrets_kuberentes_service_account" {
+variable "external_secrets_kubernetes_service_account" {
   description = "The Kubernetes Service Account used by External Secrets"
 }
 
@@ -39,6 +39,34 @@ variable "database_region" {
 }
 
 variable "database_port" {
+  description = "The port the Cloud SQL database is using"
+}
+
+variable "keycloak_database_service_account_secret_name" {
+  description = "The name of the Google Secret Manager resource that contains the service account key for accessing the Cloud SQL database"
+}
+
+variable "keycloak_database_username" {
+  description = "The database username"
+}
+
+variable "keycloak_database_password_secret_name" {
+  description = "The name of the Google Secret Manager resource the database password"
+}
+
+variable "keycloak_database_name" {
+  description = "The name of the Cloud SQL database"
+}
+
+variable "keycloak_database_project" {
+  description = "The project which the Cloud SQL database is in"
+}
+
+variable "keycloak_database_region" {
+  description = "The region which the Cloud SQL database is in"
+}
+
+variable "keycloak_database_port" {
   description = "The port the Cloud SQL database is using"
 }
 
