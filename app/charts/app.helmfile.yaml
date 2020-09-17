@@ -1,4 +1,9 @@
 releases:
+- name: oauth2-proxy
+  namespace: app
+  createNamespace: true
+  chart: stable/oauth2-proxy
+  version: 3.2.2
 - name: app
   namespace: app
   createNamespace: true
@@ -6,6 +11,9 @@ releases:
   values:
   - ingress:
       enabled: true
+      service:
+        name: oauth2-proxy
+        port: 80
       annotations:
         # kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"

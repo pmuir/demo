@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "demo-app.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $svcName := .Values.ingress.service.name }}
+{{- $svcPort := .Values.ingress.service.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -34,7 +35,7 @@ spec:
           {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: {{ $svcName }}
               servicePort: {{ $svcPort }}
           {{- end }}
     {{- end }}
