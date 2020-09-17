@@ -1,0 +1,9 @@
+helmfiles:
+  - path: letsencrypt-issuers.helmfile.yaml
+    values:
+    - ../../../infra/helmfile/values.yaml
+    - ../../../infra/helmfile/generated.yaml
+  - path: app.helmfile.yaml
+    values:
+    - ../../../infra/helmfile/values.yaml
+    - ../../../infra/helmfile/generated.yaml

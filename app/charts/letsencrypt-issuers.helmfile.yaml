@@ -1,0 +1,9 @@
+releases:
+- name: "letsencrypt-issuers"
+  namespace: app
+  createNamespace: true
+  chart: "./letsencrypt-issuers"
+  force: true
+  values:
+  - email: "{{ .Values.certManager.email}}"
+    projectId: {{ .Values.gcp.project }}

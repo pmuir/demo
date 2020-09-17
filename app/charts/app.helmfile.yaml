@@ -1,0 +1,24 @@
+releases:
+- name: app
+  namespace: app
+  createNamespace: true
+  chart: ./demo-app
+  values:
+  - ingress:
+      enabled: true
+      annotations:
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/issuer: "letsencrypt-prod"
+        nginx.org/redirect-to-https: "true"
+      hosts:
+        - host: app.{{ .Values.loadBalancer.suffix }}
+          paths:
+            - /
+      tls:
+        - secretName: app-tls
+          hosts:
+            - app.{{ .Values.loadBalancer.suffix }}
+  - image:
+      tag: latest

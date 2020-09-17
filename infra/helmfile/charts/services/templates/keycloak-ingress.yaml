@@ -6,6 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/issuer: "letsencrypt-prod"
     nginx.org/ssl-services: "{{ .Values.keycloak.service.name }}"
+    nginx.org/redirect-to-https: "true"
 spec:
   rules:
   - host: {{ .Values.keycloak.hostName }}.{{ .Values.loadBalancer.suffix }}
