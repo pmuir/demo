@@ -14,10 +14,10 @@ releases:
     existingSecretKey: "credentials.json"
     cloudsql:
       instances:
-        - instance: "{{ .Values.keycloakDatabase.instanceName }}"
-          project: "{{ .Values.keycloakDatabase.project }}"
-          region: "{{ .Values.keycloakDatabase.region }}"
-          port: {{ .Values.keycloakDatabase.port }}
+        - instance: "{{ .Values.postgres.instanceName }}"
+          project: "{{ .Values.postgres.project }}"
+          region: "{{ .Values.postgres.region }}"
+          port: {{ .Values.postgres.port }}
           instanceShortName: keycloak-sql
   - resources:
 - name: keycloak-sqlproxy-secret
@@ -34,7 +34,7 @@ releases:
             backendType: gcpSecretsManager
             projectId: {{ .Values.gcp.project }}
             data:
-              - key: {{ .Values.keycloakDatabase.serviceAccountSecretName }}
+              - key: {{ .Values.postgres.serviceAccountSecretName }}
                 version: latest
                 name: credentials.json
                 isBinary: true

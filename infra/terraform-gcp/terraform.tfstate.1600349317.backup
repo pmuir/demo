@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "0.13.1",
-  "serial": 343,
+  "serial": 340,
   "lineage": "47ad82bf-b73c-8505-9f76-202173a9e30a",
   "outputs": {},
   "resources": [
@@ -493,6 +493,49 @@
       ]
     },
     {
+      "module": "module.keycloak_database_new",
+      "mode": "managed",
+      "type": "google_sql_database",
+      "name": "database",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "charset": "UTF8",
+            "collation": "en_US.UTF8",
+            "id": "projects/pmuir-dev/instances/keycloak-database-new/databases/database",
+            "instance": "keycloak-database-new",
+            "name": "database",
+            "project": "pmuir-dev",
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/pmuir-dev/instances/keycloak-database-new/databases/database",
+            "timeouts": null
+          }
+        }
+      ]
+    },
+    {
+      "module": "module.keycloak_database_new",
+      "mode": "managed",
+      "type": "google_sql_user",
+      "name": "user",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "host": "",
+            "id": "postgres//keycloak-database-new",
+            "instance": "keycloak-database-new",
+            "name": "postgres",
+            "password": "ZCGrQsdoFrHACjzb",
+            "project": "pmuir-dev",
+            "timeouts": null
+          }
+        }
+      ]
+    },
+    {
       "module": "module.mysql",
       "mode": "managed",
       "type": "google_project_iam_member",
@@ -589,7 +632,7 @@
           "attributes": {
             "create_time": "2020-09-17T13:21:34.347521Z",
             "id": "projects/pmuir-dev/secrets/mysql-database-database-password",
-            "labels": {},
+            "labels": null,
             "name": "projects/1063004576079/secrets/mysql-database-database-password",
             "project": "pmuir-dev",
             "replication": [
@@ -624,7 +667,7 @@
           "attributes": {
             "create_time": "2020-09-17T13:21:33.439591Z",
             "id": "projects/pmuir-dev/secrets/mysql-database-service-account-key",
-            "labels": {},
+            "labels": null,
             "name": "projects/1063004576079/secrets/mysql-database-service-account-key",
             "project": "pmuir-dev",
             "replication": [
@@ -659,7 +702,7 @@
           "attributes": {
             "create_time": "2020-09-17T13:21:35.258409Z",
             "id": "projects/pmuir-dev/secrets/mysql-database-mysql-proerties",
-            "labels": {},
+            "labels": null,
             "name": "projects/1063004576079/secrets/mysql-database-mysql-proerties",
             "project": "pmuir-dev",
             "replication": [
@@ -1015,7 +1058,7 @@
             "settings": [
               {
                 "activation_policy": "ALWAYS",
-                "authorized_gae_applications": [],
+                "authorized_gae_applications": null,
                 "availability_type": "",
                 "backup_configuration": [
                   {
@@ -1049,7 +1092,7 @@
                 "pricing_plan": "PER_USE",
                 "replication_type": "SYNCHRONOUS",
                 "tier": "db-f1-micro",
-                "user_labels": {},
+                "user_labels": null,
                 "version": 1
               }
             ],
@@ -1235,7 +1278,7 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgkM8WZk=",
+            "etag": "BwWvgijYS2w=",
             "id": "pmuir-dev/roles/dns.admin/serviceaccount:certmanager@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:certmanager@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
@@ -1259,7 +1302,7 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgkM8WZk=",
+            "etag": "BwWvgijYS2w=",
             "id": "pmuir-dev/roles/dns.admin/serviceaccount:externaldns@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:externaldns@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
@@ -1421,7 +1464,7 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgkM8WZk=",
+            "etag": "BwWvgijYS2w=",
             "id": "pmuir-dev/roles/cloudsql.client/serviceaccount:postgres-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:postgres-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",

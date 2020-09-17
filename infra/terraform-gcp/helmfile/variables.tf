@@ -18,7 +18,7 @@ variable "external_secrets_kubernetes_service_account" {
   description = "The Kubernetes Service Account used by External Secrets"
 }
 
-variable "database_service_account_secret_name" {
+variable "mysql_service_account_secret_name" {
   description = "The name of the Google Secret Manager resource that contains the service account key for accessing the Cloud SQL database"
 }
 
@@ -26,55 +26,55 @@ variable "mysql_properties_secret_name" {
   description = "The name of the Google Secret Manager resource that contains the properties file for accessing the Cloud SQL database"
 }
 
-variable "database_name" {
+variable "mysql_name" {
   description = "The name of the Cloud SQL database"
 }
 
-variable "database_instance_name" {
+variable "mysql_instance_name" {
   description = "The name of the Cloud SQL database instance"
 }
 
-variable "database_project" {
+variable "mysql_project" {
   description = "The project which the Cloud SQL database is in"
 }
 
-variable "database_region" {
+variable "mysql_region" {
   description = "The region which the Cloud SQL database is in"
 }
 
-variable "database_port" {
+variable "mysql_port" {
   description = "The port the Cloud SQL database is using"
 }
 
-variable "keycloak_database_service_account_secret_name" {
+variable "postgres_service_account_secret_name" {
   description = "The name of the Google Secret Manager resource that contains the service account key for accessing the Cloud SQL database"
 }
 
-variable "keycloak_database_username" {
+variable "postgres_username" {
   description = "The database username"
 }
 
-variable "keycloak_database_password_secret_name" {
+variable "postgres_password_secret_name" {
   description = "The name of the Google Secret Manager resource the database password"
 }
 
-variable "keycloak_database_instance_name" {
+variable "postgres_instance_name" {
   description = "The name of the Cloud SQL database instance"
 }
 
-variable "keycloak_database_name" {
+variable "postgres_name" {
   description = "The name of the Cloud SQL database"
 }
 
-variable "keycloak_database_project" {
+variable "postgres_project" {
   description = "The project which the Cloud SQL database is in"
 }
 
-variable "keycloak_database_region" {
+variable "postgres_region" {
   description = "The region which the Cloud SQL database is in"
 }
 
-variable "keycloak_database_port" {
+variable "postgres_port" {
   description = "The port the Cloud SQL database is using"
 }
 

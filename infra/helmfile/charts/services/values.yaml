@@ -16,7 +16,7 @@ keycloak:
   replicas: 1
   hostName: keycloak
   service:
-    name: keycloak
+    name: keycloak # This seems to be a static value?
     port: 8443
 loadBalancer:
   suffix: local

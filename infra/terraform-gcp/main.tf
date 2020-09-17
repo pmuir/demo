@@ -45,17 +45,18 @@ module "secrets" {
   depends_on = [ module.cluster ]
 }
 
-module "database" {
+module "mysql" {
   source = "./database"
+  name = "mysql-database"
   project = local.gcp_project
   external_secrets_google_service_account_email = module.secrets.external_secrets_google_service_account_email
   binary_log_enabled = true
   depends_on = [ module.secrets ]
 }
 
-module "keycloak_database_new" {
+module "postgres" {
   source = "./database"
-  name = "keycloak-database-new"
+  name = "postgres-database"
   database_version = "POSTGRES_10"
   username = "postgres"
   project = local.gcp_project
@@ -69,21 +70,21 @@ module "helmfile" {
   external_secrets_google_service_account_email = module.secrets.external_secrets_google_service_account_email
   external_secrets_kubernetes_service_account = local.external_secrets_kubernetes_service_account
   external_secrets_namespace = local.external_secrets_namespace
-  database_service_account_secret_name = module.database.service_account_secret_name
-  mysql_properties_secret_name = module.database.mysql_properties_password_secret_name
-  database_name = module.database.database_name
-  database_instance_name = module.database.database_instance_name
-  database_port = module.database.database_port
-  database_project = module.database.database_project
-  database_region = module.database.database_region
-  keycloak_database_service_account_secret_name = module.keycloak_database_new.service_account_secret_name
-  keycloak_database_username = module.keycloak_database_new.database_username
-  keycloak_database_password_secret_name = module.keycloak_database_new.database_password_secret_name
-  keycloak_database_name = module.keycloak_database_new.database_name
-  keycloak_database_instance_name = module.keycloak_database_new.database_instance_name
-  keycloak_database_port = module.keycloak_database_new.database_port
-  keycloak_database_project = module.keycloak_database_new.database_project
-  keycloak_database_region = module.keycloak_database_new.database_region
+  mysql_service_account_secret_name = module.mysql.service_account_secret_name
+  mysql_properties_secret_name = module.mysql.mysql_properties_password_secret_name
+  mysql_name = module.mysql.database_name
+  mysql_instance_name = module.mysql.database_instance_name
+  mysql_port = module.mysql.database_port
+  mysql_project = module.mysql.database_project
+  mysql_region = module.mysql.database_region
+  postgres_service_account_secret_name = module.postgres.service_account_secret_name
+  postgres_username = module.postgres.database_username
+  postgres_password_secret_name = module.postgres.database_password_secret_name
+  postgres_name = module.postgres.database_name
+  postgres_instance_name = module.postgres.database_instance_name
+  postgres_port = module.postgres.database_port
+  postgres_project = module.postgres.database_project
+  postgres_region = module.postgres.database_region
   domain_suffix = module.networking.suffix
   load_balancer_ip = module.networking.load_balancer
   cert_manager_google_service_account = module.networking.cert_manager_google_service_account

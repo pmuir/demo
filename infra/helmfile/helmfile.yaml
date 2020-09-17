@@ -21,11 +21,11 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
-- path: gcloud-sql-proxy.yaml
+- path: mysql-gcloud-sql-proxy.yaml
   values:
   - values.yaml
   - generated.yaml
-- path: keycloak-gcloud-sql-proxy.yaml
+- path: postgres-gcloud-sql-proxy.yaml
   values:
     - values.yaml
     - generated.yaml

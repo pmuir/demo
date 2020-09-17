@@ -9,24 +9,24 @@ locals {
       kubernetesServiceAccount: var.external_secrets_kubernetes_service_account
       googleServiceAccount: var.external_secrets_google_service_account_email
     }
-    database: {
+    mysql: {
       mysqlPropertiesSecretName: var.mysql_properties_secret_name
-      serviceAccountSecretName: var.database_service_account_secret_name
-      name: var.database_name
-      instanceName: var.database_instance_name
-      project: var.database_project
-      region: var.database_region
-      port: var.database_port
+      serviceAccountSecretName: var.mysql_service_account_secret_name
+      name: var.mysql_name
+      instanceName: var.mysql_instance_name
+      project: var.mysql_project
+      region: var.mysql_region
+      port: var.mysql_port
     }
-    keycloakDatabase: {
-      username: var.keycloak_database_username
-      passwordSecretName: var.keycloak_database_password_secret_name
-      serviceAccountSecretName: var.keycloak_database_service_account_secret_name
-      name: var.keycloak_database_name
-      instanceName: var.keycloak_database_instance_name
-      project: var.keycloak_database_project
-      region: var.keycloak_database_region
-      port: var.keycloak_database_port
+    postgres: {
+      username: var.postgres_username
+      passwordSecretName: var.postgres_password_secret_name
+      serviceAccountSecretName: var.postgres_service_account_secret_name
+      name: var.postgres_name
+      instanceName: var.postgres_instance_name
+      project: var.postgres_project
+      region: var.postgres_region
+      port: var.postgres_port
     }
     loadBalancer: {
       ip: var.load_balancer_ip
