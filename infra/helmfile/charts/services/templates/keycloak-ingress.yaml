@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/issuer: "letsencrypt-prod"
+    nginx.org/ssl-services: "{{ .Values.keycloak.service.name }}"
+spec:
+  rules:
+  - host: {{ .Values.keycloak.hostName }}.{{ .Values.loadBalancer.suffix }}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.keycloak.service.name }}
+          servicePort: {{ .Values.keycloak.service.port }}
+        path: /
+  tls:
+  - hosts:
+    - {{ .Values.keycloak.hostName }}.{{ .Values.loadBalancer.suffix }}
+    secretName: keycloak-tls

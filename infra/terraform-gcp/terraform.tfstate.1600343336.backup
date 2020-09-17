@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "0.13.1",
-  "serial": 249,
+  "serial": 220,
   "lineage": "47ad82bf-b73c-8505-9f76-202173a9e30a",
   "outputs": {},
   "resources": [
@@ -1042,12 +1042,12 @@
         {
           "schema_version": 0,
           "attributes": {
-            "content": "##################################################\n# WARNING: This file is overwritten by terraform #\n# Make any changes in values.yaml             #\n##################################################\n\n\"certManager\":\n  \"googleServiceAccount\": \"certmanager@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"cert-manager\"\n  \"namespace\": \"cert-manager\"\n\"database\":\n  \"mysqlPropertiesSecretName\": \"database-mysql-proerties\"\n  \"name\": \"database\"\n  \"port\": 5432\n  \"project\": \"pmuir-dev\"\n  \"region\": \"europe-west1\"\n  \"serviceAccountSecretName\": \"database-service-account-key\"\n\"externalDns\":\n  \"googleServiceAccount\": \"externaldns@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"external-dns\"\n  \"namespace\": \"external-dns\"\n\"externalSecrets\":\n  \"googleServiceAccount\": \"externalsecrets@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"external-secrets\"\n  \"namespace\": \"external-secrets\"\n\"gcp\":\n  \"project\": \"pmuir-dev\"\n\"keycloakDatabase\":\n  \"name\": \"keycloak-database-new\"\n  \"passwordSecretName\": \"keycloak-database-new-database-password\"\n  \"port\": 5432\n  \"project\": \"pmuir-dev\"\n  \"region\": \"europe-west1\"\n  \"serviceAccountSecretName\": \"keycloak-database-new-service-account-key\"\n  \"username\": \"postgres\"\n\"loadBalancer\":\n  \"ip\": \"35.233.17.204\"\n  \"suffix\": \"g.bleepbleep.org.uk\"\n",
+            "content": "##################################################\n# WARNING: This file is overwritten by terraform #\n# Make any changes in values.yaml             #\n##################################################\n\n\"certManager\":\n  \"googleServiceAccount\": \"certmanager@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"cert-manager\"\n  \"namespace\": \"cert-manager\"\n\"database\":\n  \"mysqlPropertiesSecretName\": \"database-mysql-proerties\"\n  \"name\": \"database\"\n  \"port\": 5432\n  \"project\": \"pmuir-dev\"\n  \"region\": \"europe-west1\"\n  \"serviceAccountSecretName\": \"database-service-account-key\"\n\"externalDns\":\n  \"googleServiceAccount\": \"externaldns@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"external-dns\"\n  \"namespace\": \"external-dns\"\n\"externalSecrets\":\n  \"googleServiceAccount\": \"externalsecrets@pmuir-dev.iam.gserviceaccount.com\"\n  \"kubernetesServiceAccount\": \"external-secrets\"\n  \"namespace\": \"external-secrets\"\n\"gcp\":\n  \"project\": \"pmuir-dev\"\n\"keycloakDatabase\":\n  \"name\": \"keycloak-database\"\n  \"passwordSecretName\": \"keycloak-database-database-password\"\n  \"port\": 5432\n  \"project\": \"pmuir-dev\"\n  \"region\": \"europe-west1\"\n  \"serviceAccountSecretName\": \"keycloak-database-service-account-key\"\n  \"username\": \"postgres\"\n\"loadBalancer\":\n  \"ip\": \"35.233.17.204\"\n  \"suffix\": \"g.bleepbleep.org.uk\"\n",
             "content_base64": null,
             "directory_permission": "0777",
             "file_permission": "0777",
             "filename": "../helmfile/generated.yaml",
-            "id": "67ba391b8347a89eb27e92d585c2f01f704e114d",
+            "id": "db9460372ee1c7b72f7bec7cbd998ec8422ba20d",
             "sensitive_content": null
           },
           "private": "bnVsbA==",
@@ -1058,9 +1058,9 @@
             "module.database.google_secret_manager_secret.database_service_account_key",
             "module.database.google_secret_manager_secret.mysql_properties",
             "module.database.google_sql_database_instance.database",
-            "module.keycloak_database_new.google_secret_manager_secret.database_password",
-            "module.keycloak_database_new.google_secret_manager_secret.database_service_account_key",
-            "module.keycloak_database_new.google_sql_database_instance.database",
+            "module.keycloak_database.google_secret_manager_secret.database_password",
+            "module.keycloak_database.google_secret_manager_secret.database_service_account_key",
+            "module.keycloak_database.google_sql_database_instance.database",
             "module.networking.google_compute_address.ip_address",
             "module.networking.google_service_account.cert_manager",
             "module.networking.google_service_account.external_dns",
@@ -1099,7 +1099,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_project_iam_member",
       "name": "iam_binding_member",
@@ -1109,9 +1109,9 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgQHl7fc=",
-            "id": "pmuir-dev/roles/cloudsql.client/serviceaccount:keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
-            "member": "serviceAccount:keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "etag": "BwWvfo7c/tA=",
+            "id": "pmuir-dev/roles/cloudsql.client/serviceaccount:keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "member": "serviceAccount:keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
             "role": "roles/cloudsql.client"
           },
@@ -1120,7 +1120,7 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_service_account.service_account",
+            "module.keycloak_database.google_service_account.service_account",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1128,7 +1128,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_project_service",
       "name": "sql_admin",
@@ -1156,7 +1156,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_project_service",
       "name": "sql_component_api",
@@ -1184,7 +1184,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret",
       "name": "database_password",
@@ -1193,10 +1193,10 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:51:36.018795Z",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-database-password",
-            "labels": null,
-            "name": "projects/1063004576079/secrets/keycloak-database-new-database-password",
+            "create_time": "2020-09-16T12:13:05.934289Z",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-database-password",
+            "labels": {},
+            "name": "projects/1063004576079/secrets/keycloak-database-database-password",
             "project": "pmuir-dev",
             "replication": [
               {
@@ -1204,7 +1204,7 @@
                 "user_managed": []
               }
             ],
-            "secret_id": "keycloak-database-new-database-password",
+            "secret_id": "keycloak-database-database-password",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19",
@@ -1219,7 +1219,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret",
       "name": "database_service_account_key",
@@ -1228,10 +1228,10 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:51:35.218589Z",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-service-account-key",
-            "labels": null,
-            "name": "projects/1063004576079/secrets/keycloak-database-new-service-account-key",
+            "create_time": "2020-09-16T12:20:53.870812Z",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-service-account-key",
+            "labels": {},
+            "name": "projects/1063004576079/secrets/keycloak-database-service-account-key",
             "project": "pmuir-dev",
             "replication": [
               {
@@ -1239,7 +1239,7 @@
                 "user_managed": []
               }
             ],
-            "secret_id": "keycloak-database-new-service-account-key",
+            "secret_id": "keycloak-database-service-account-key",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19",
@@ -1254,7 +1254,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret",
       "name": "mysql_properties",
@@ -1263,10 +1263,10 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:51:35.983739Z",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-mysql-proerties",
-            "labels": null,
-            "name": "projects/1063004576079/secrets/keycloak-database-new-mysql-proerties",
+            "create_time": "2020-09-16T12:13:05.346794Z",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-mysql-proerties",
+            "labels": {},
+            "name": "projects/1063004576079/secrets/keycloak-database-mysql-proerties",
             "project": "pmuir-dev",
             "replication": [
               {
@@ -1274,7 +1274,7 @@
                 "user_managed": []
               }
             ],
-            "secret_id": "keycloak-database-new-mysql-proerties",
+            "secret_id": "keycloak-database-mysql-proerties",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19",
@@ -1289,7 +1289,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_iam_member",
       "name": "database_password",
@@ -1299,19 +1299,19 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgQJGGEo=",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-database-password/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
+            "etag": "BwWvbTC+Brc=",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-database-password/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
             "role": "roles/secretmanager.secretAccessor",
-            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-new-database-password"
+            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-database-password"
           },
           "private": "bnVsbA==",
           "dependencies": [
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.database_password",
+            "module.keycloak_database.google_secret_manager_secret.database_password",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1319,7 +1319,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_iam_member",
       "name": "database_service_account_key",
@@ -1329,19 +1329,19 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgQGjJ2E=",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-service-account-key/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
+            "etag": "BwWvbUymgkg=",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-service-account-key/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
             "role": "roles/secretmanager.secretAccessor",
-            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-new-service-account-key"
+            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-service-account-key"
           },
           "private": "bnVsbA==",
           "dependencies": [
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.database_service_account_key",
+            "module.keycloak_database.google_secret_manager_secret.database_service_account_key",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1349,7 +1349,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_iam_member",
       "name": "mysql_properties",
@@ -1359,19 +1359,19 @@
           "schema_version": 0,
           "attributes": {
             "condition": [],
-            "etag": "BwWvgQGs81w=",
-            "id": "projects/pmuir-dev/secrets/keycloak-database-new-mysql-proerties/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
+            "etag": "BwWvbTC2+uw=",
+            "id": "projects/pmuir-dev/secrets/keycloak-database-mysql-proerties/roles/secretmanager.secretAccessor/serviceaccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "member": "serviceAccount:externalsecrets@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
             "role": "roles/secretmanager.secretAccessor",
-            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-new-mysql-proerties"
+            "secret_id": "projects/pmuir-dev/secrets/keycloak-database-mysql-proerties"
           },
           "private": "bnVsbA==",
           "dependencies": [
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.mysql_properties",
+            "module.keycloak_database.google_secret_manager_secret.mysql_properties",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1379,7 +1379,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_version",
       "name": "database_password_version",
@@ -1388,13 +1388,13 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:56:34.840249Z",
+            "create_time": "2020-09-17T07:28:06.425538Z",
             "destroy_time": "",
             "enabled": true,
-            "id": "projects/1063004576079/secrets/keycloak-database-new-database-password/versions/1",
-            "name": "projects/1063004576079/secrets/keycloak-database-new-database-password/versions/1",
-            "secret": "projects/pmuir-dev/secrets/keycloak-database-new-database-password",
-            "secret_data": "ZCGrQsdoFrHACjzb",
+            "id": "projects/1063004576079/secrets/keycloak-database-database-password/versions/2",
+            "name": "projects/1063004576079/secrets/keycloak-database-database-password/versions/2",
+            "secret": "projects/pmuir-dev/secrets/keycloak-database-database-password",
+            "secret_data": "lWu5LPbp7I88aHN1",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0=",
@@ -1402,10 +1402,10 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.database_password",
-            "module.keycloak_database_new.google_sql_database_instance.database",
-            "module.keycloak_database_new.google_sql_user.user",
-            "module.keycloak_database_new.random_password.password",
+            "module.keycloak_database.google_secret_manager_secret.database_password",
+            "module.keycloak_database.google_sql_database_instance.database",
+            "module.keycloak_database.google_sql_user.user",
+            "module.keycloak_database.random_password.password",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1413,7 +1413,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_version",
       "name": "database_service_account_key_version",
@@ -1422,13 +1422,13 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:51:48.500616Z",
+            "create_time": "2020-09-16T12:20:55.427419Z",
             "destroy_time": "",
             "enabled": true,
-            "id": "projects/1063004576079/secrets/keycloak-database-new-service-account-key/versions/1",
-            "name": "projects/1063004576079/secrets/keycloak-database-new-service-account-key/versions/1",
-            "secret": "projects/pmuir-dev/secrets/keycloak-database-new-service-account-key",
-            "secret_data": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAicG11aXItZGV2IiwKICAicHJpdmF0ZV9rZXlfaWQiOiAiYjNmOTEyMGI1MmNhNGZjOGIwOTU0NGE1YTg5OTI3ZWVjOWQyNzNmYiIsCiAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxuTUlJRXZnSUJBREFOQmdrcWhraUc5dzBCQVFFRkFBU0NCS2d3Z2dTa0FnRUFBb0lCQVFDZWZSUCtBRnRXLzMwRFxuUW5wWWF1YjFpVmlKeU5ZTzVJajluVVdKU3B0aDdKeHpNRDlFU2FLVVFRbTRCU3oxcHgyUzBaenRFdjFLcE9jY1xuUlN1aWdpT0s1bmhGc0NHMDc2MDA3d01YRmJlY0pRM25xZVlsVk5SR2Exa1NPYk9zMzNXTGpRalFVVXZTekRMZVxuVVE1WE5saTM3NWZ5Nkl1cU94Ny9laFR0TGZIZVN0RGhLaW9LQjZBb3M1dGlmbDUvNzllczRteG4zREVaYkdMOFxuNkxQWjluN0oxNTZSSHRFUlAvTTk0WkNrS2lhUDhIb2E0UzVrNEUzc3ZuZGRPb3diTnNEcUdTZTlzSDQ1M05LWVxucTFJM2IzbUlERHJtM2VXQWxGR244N0Q5TGNJOVNFZ1Q2N3FKRjZ5K2tTL01NMlBUenNtVjFlM2xBWTZ0b1JFaFxubTltdS95TGxBZ01CQUFFQ2dnRUFJK2RzZzhhVGFyQks0eFhvandhNngwV2ozZVQyWDEzVkRmVld4eTAwYWJqM1xuVVY0TSt4eWVYTzBsOVQ4UTZoNi9nNThDYUsrOFczQmpuZU1xcVRCSHVvUVBHNlIwNGw5SXN4enhhNFdqT0plcFxuWUlHOERsbDdGRy9sdUF3RDRRWW5oQ09CYTJYN1lpZ1ozd1RvVllnTmphL1UwYlh1Uy9TRVIzYWg3b0JSMHB4dlxuVHljbjRFMlJJVE1NdmNKVTRJT1Z0bUZiUHhyT3ExZ1Znd3R2WUNLY1pFMFJFcjh3NU5jWW9uT0ZWWXVEYVhtL1xuRzdhWlhJQys0TEYrcDZObVBTWE5VaS9wWEdqWnkvYW9Mdy9nRnJRa0hwVjc0cUNURUkzZHhpSk16S2tsZ0ZFd1xubXRVaG1oc3VUL2J2VEV1NGtQbFIwWXRGT0J0ekZEaUhYK3M2YUdnUEtRS0JnUURacXZVMENxMkcrb3JreXlwd1xuNjFGSHREbm9TeWpMQkZ1V3lKSVo3aDFHTDZKbXBMOXU2dDFlRHVyK3Nic0hZOHdGNTYydXRyZFIva05UdnEvN1xubWs2QWNRMUNlbFJGSUZSOXY4NFJkeml4em1sSVRodWRqeFFYWDNRWncvdmpUQXFqRWZMWEdXbkVrNTFXaVU1clxuTVNBTjJDbmZlZCtmREZXdk41RC9tZCtMQ1FLQmdRQzZaaW9DMzgrOUhjSU02cFZtcXF0WUV6R2NrM2Z0aGFsSFxuVEgzNkJNZ3B4VSsxdlNZRzZjeGE0blp4UEhrZFh1bERHeVh0Wno5Q2RLOGxhUWIzQ1llMG1XUFhmM0J5QVJpUFxubEwvd0FXOXlqZnJ1QWhteHpzMEdvTU5mbVVYVjFJUG4rRWd3ZUFRQ3FLeWp6eEhXNXB6V3dSQW1saC9wUDAwMVxuWk9aczBpeWovUUtCZ1FEUmozNHpkSFJNbDdwUlBDaklQa1lxdXFGbHU3YXlmcWVQSzlzOWk3b3pjSGp5U1hya1xuMXNuNVhITnljcnFXQ3NiS2lKcjJzb01jTmFlc1lOSWRjaHBTSG9XZGt4aSsxTG1EdDc0MW9vcTY1UGNIM2V0SVxuYmcveDBMeCtjZWw0bENWSmltWTZJUVZyZEpMdVZaTmlNQkdrUXBGTnpwQTFHRE1HVm9FTEZLSGJ3UUtCZ1FDZFxuSE0vOGJEbmw1ZGRTbThnaUtXa1RhOW85WisrR1BVdFoxWmU1elo0SjEwNUFtWlliN2FWYVZkZ1B5akVzR0h2MVxuSEVUenZqc01BTjVBWWk2RXUzdXZOanQ1d09rK3JyM05DRXhnT0ZWLzhUeTRzUHlIYXhCVnJkd0FFR2xVdXpRVFxucXFydWI3cXhvd3NoWjhCWnF6ZzNxN081VW9ERFVaLzZpWG5QNzdmQTRRS0JnQjFVeHRwMWRBbVlWVG5Jc1hiS1xuaUJPODlCVldGdUt0TTBYOXdCbzZ5ZjBIYkp4QTh5OHNHVlBHZVd0VzYxSjJrek9vM1Q0c2NjUnJZMHJhempJSFxuSEFJY3NSZXJsd3c1bnRpZi96M0M5WTlkS2xLT1VtNklCOGRIWWZDenFmKzkrTzkycUE0NGRoSmlId2k2cE1VRFxubzV4Smc5Y2QzTUwvV0NxdzBhQVFad2plXG4tLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tXG4iLAogICJjbGllbnRfZW1haWwiOiAia2V5Y2xvYWstZGF0YWJhc2UtbmV3LWNsb3Vkc3FsQHBtdWlyLWRldi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTE2MTYxOTk0NDI5ODUxNzE0ODQiLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5L2tleWNsb2FrLWRhdGFiYXNlLW5ldy1jbG91ZHNxbCU0MHBtdWlyLWRldi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIKfQo=",
+            "id": "projects/1063004576079/secrets/keycloak-database-service-account-key/versions/1",
+            "name": "projects/1063004576079/secrets/keycloak-database-service-account-key/versions/1",
+            "secret": "projects/pmuir-dev/secrets/keycloak-database-service-account-key",
+            "secret_data": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAicG11aXItZGV2IiwKICAicHJpdmF0ZV9rZXlfaWQiOiAiYmI3MjVkN2VkZTU3M2I5YzNlMDkwYjc3OGNlYWU1NmJkODJiODNlMiIsCiAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxuTUlJRXZBSUJBREFOQmdrcWhraUc5dzBCQVFFRkFBU0NCS1l3Z2dTaUFnRUFBb0lCQVFDblNzSG1OU3JNS0VpVlxuNXNQYjFvaDYxb2R6ekUvUmdPZ2FvZXUwYng4OHhBeWdKQXNuS2ZPSEpqQmduZENkMi9ONU4yTldYRUpHYzAyWVxubjdhT2FRaUt3NlU2ekNvWitZd3RjL1o2a0czQU5PZWp4VDZQeWladmtCWHBWN3BHcGFGQnBmTGlJdHpONFFhaVxuMytHTE1oZFg0OEcrMnRuTFNKT0Q1emJTdm5rM3F6OGxSOUFFamRjMkZwTDJZOUltU285S205a0Y5dTRmcU5xQVxuQlljUGJ5bUpjeUI0RXB6QXFxMTNlMnYySFNoZUltL3U5VmdIV3lBVDFrV0FjU2hNRE0vcDFBRFBNZWRNc3dLUFxub1doMnhqVXFUeS9VSWNPRGNzb1hHZ0srRHg5cEtMR09kSlJiWlBiejNvMnQ1Z2Ivd3plOVJodjBsMTl6Tk1lcVxub1VWOHRpcGRBZ01CQUFFQ2dnRUFCbkQ5Q0hZNngyRWVzd2VQWk44bllxUWJmam5iUjBFUmVYaGd3N3kxUlI1Slxuc1NuVXljV0EvdzdEOVVNUkFGOElIOU9pT010S2NhZ291dmJJQXB3OTRWL3Vud0N6b2ZhUjcwSEVOMkcrYnI5QVxuRXd0NklQTU5sS1ZGaVdEMkhHM0RYaXg3cnJtSHdIVkl1amFUYitGZ3lqZ2hZbzM1TGExYlRBeDM5OWlGMWltVlxudmMwRnNac0hKMzJZcCthZFA3UGJOUFZOVTRiM0FKbXNtZk1HcnJ5b2dRaVdEZkN6aW4xcEdTZzVLcW5SL2JpK1xuUlNyNFV0VWlIQnFzT2pLZTlkYUdvcHFNNFBVVlRpSTNwbW92T05KSGovQUJ0MlJ3VTQwcWNPR3ZTdGdHeDZRSVxudzlHdC9RTFdqcGFwajlOeDE0ZFp0ajdsSTdOYkhEQUdIWEJGVXYrZFNRS0JnUURqYmdOTnFSUGhNQVBEcDRmRlxuZVNuVUtnZlRiT3JGVitqMlF5cGE4YU1vcG9kWnFjMVlsdDFzMSsrcWVvbGdMQ3hWZGlzU0ZHOHVBc0RZNlhqNlxuR1hmUE42MkJOMDUxZkQrTmRsc3AzMTRWYnJ1NFQ3bzFLVFZDODFUeGRzcldkYVFBREtWUmZpY1JKWmdWcU1TU1xuWHIrSm1JSllualhINXVBaVhSaU1sSVp2V1FLQmdRQzhUc0dPRmxEZmRTMkV1L3ZRUDJxTGUwcFFxOHRzUTF0TVxuOGxxTjhrcUZTdTZCdmJ2U0ZzanNaV3FaZjJaZUdZNUpqYlRwRlU4ZVdjKzRUU0VpR3BjdnhiaEdhS0FML3ZKT1xuOXkvcFk5UHRGbGRaeVNlaEJTOFk4WTVyVGI1OFRUb3IwLzFTYnkrNHZGYXowMnR0NHAvWW45aWhqYXY3ZU1Wa1xuc1E4MXBWeldwUUtCZ0hETUIyZGxEQzhMbVZKWXJNWU1LZXJJVGNsV283bnN0K1lydWI0UlNsTEhCU283UlZWQ1xudmQ5VjJkQTdwaGJFMGRneEczdUVGd0JDN1ZLbnVSQ1J3UkpORXdpYlhaWjNZUzNRSGJiT3llTG5ZTU14QjdHR1xuRnB4MkF4TWZUOHE5M2ZFSVZKWHVjNEhWbTNCaW05dmNrakswS1RHNmhnSDNTQUxER1lIZnlDMUJBb0dBQXREYVxuckJsQlZGWVlQQ2ZqZUJXNnJpTkYxVGI4Yjc0Q0c0QjBRak1oVWlUd3RCZjJPd29FTHlURkYwNkVaVnZVZU4wWlxubTNLcUlEWVBtUjN1Sk9obzRsbitpMjc5RmJEV1JzQURnMlh1d1ZqWUxZdUlnQ3ZuckdQUVVXSjBPcitjNHhMa1xuY3RzZXg1QnBhMzc1MkViUFJSbit6MHVqQ3J1Zm1BWGR5RnVVcTlFQ2dZQWtCS253b2pIRlFGY3BsTXpHSk9Bc1xuTVQybHZnUGJVT2JpMzZTdHhDbjBWOFdMQ2J5K1FXeDQyc0Z2V2dMUGFZRGRKZkZ3OUM0NGxCR1NFZVNzRXY3dlxuL0hqM2pTQUhmTmNSTzJUZ1k2MzA3dEtMZTdtRUdtaHBlQk50dXlrWEZ3MDhjS0t1KzF0ZmJQSnJqdU1TRmNzbVxua2lmWmZzS2dvRW5JVEcveFJ3cmVoQT09XG4tLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tXG4iLAogICJjbGllbnRfZW1haWwiOiAia2V5Y2xvYWstZGF0YWJhc2UtY2xvdWRzcWxAcG11aXItZGV2LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAiY2xpZW50X2lkIjogIjExNjQ0NzIxOTc0OTI5MDk2MzY1MyIsCiAgImF1dGhfdXJpIjogImh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9vL29hdXRoMi9hdXRoIiwKICAidG9rZW5fdXJpIjogImh0dHBzOi8vb2F1dGgyLmdvb2dsZWFwaXMuY29tL3Rva2VuIiwKICAiYXV0aF9wcm92aWRlcl94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL29hdXRoMi92MS9jZXJ0cyIsCiAgImNsaWVudF94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL3JvYm90L3YxL21ldGFkYXRhL3g1MDkva2V5Y2xvYWstZGF0YWJhc2UtY2xvdWRzcWwlNDBwbXVpci1kZXYuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iCn0K",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0=",
@@ -1436,9 +1436,8 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.database_service_account_key",
-            "module.keycloak_database_new.google_service_account.service_account",
-            "module.keycloak_database_new.google_service_account_key.service_account_key",
+            "module.keycloak_database.google_secret_manager_secret.database_service_account_key",
+            "module.keycloak_database.google_service_account_key.service_account_key",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1446,7 +1445,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_secret_manager_secret_version",
       "name": "mysql_properties_version",
@@ -1455,13 +1454,13 @@
         {
           "schema_version": 0,
           "attributes": {
-            "create_time": "2020-09-17T11:56:34.668417Z",
+            "create_time": "2020-09-17T07:28:06.426220Z",
             "destroy_time": "",
             "enabled": true,
-            "id": "projects/1063004576079/secrets/keycloak-database-new-mysql-proerties/versions/1",
-            "name": "projects/1063004576079/secrets/keycloak-database-new-mysql-proerties/versions/1",
-            "secret": "projects/pmuir-dev/secrets/keycloak-database-new-mysql-proerties",
-            "secret_data": "mysql_username: postgres\nmysql_password: ZCGrQsdoFrHACjzb\n",
+            "id": "projects/1063004576079/secrets/keycloak-database-mysql-proerties/versions/3",
+            "name": "projects/1063004576079/secrets/keycloak-database-mysql-proerties/versions/3",
+            "secret": "projects/pmuir-dev/secrets/keycloak-database-mysql-proerties",
+            "secret_data": "mysql_username: postgres\nmysql_password: lWu5LPbp7I88aHN1\n",
             "timeouts": null
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0=",
@@ -1469,10 +1468,10 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_secret_manager_secret.mysql_properties",
-            "module.keycloak_database_new.google_sql_database_instance.database",
-            "module.keycloak_database_new.google_sql_user.user",
-            "module.keycloak_database_new.random_password.password",
+            "module.keycloak_database.google_secret_manager_secret.mysql_properties",
+            "module.keycloak_database.google_sql_database_instance.database",
+            "module.keycloak_database.google_sql_user.user",
+            "module.keycloak_database.random_password.password",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1480,7 +1479,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_service_account",
       "name": "service_account",
@@ -1489,15 +1488,15 @@
         {
           "schema_version": 0,
           "attributes": {
-            "account_id": "keycloak-database-new-cloudsql",
+            "account_id": "keycloak-database-cloudsql",
             "description": "",
-            "display_name": "keycloak-database-new CloudSQL Service Account",
-            "email": "keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
-            "id": "projects/pmuir-dev/serviceAccounts/keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
-            "name": "projects/pmuir-dev/serviceAccounts/keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "display_name": "keycloak-database CloudSQL Service Account",
+            "email": "keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "id": "projects/pmuir-dev/serviceAccounts/keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "name": "projects/pmuir-dev/serviceAccounts/keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
             "project": "pmuir-dev",
             "timeouts": null,
-            "unique_id": "111616199442985171484"
+            "unique_id": "116447219749290963653"
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ==",
           "dependencies": [
@@ -1511,7 +1510,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_service_account_key",
       "name": "service_account_key",
@@ -1520,19 +1519,19 @@
         {
           "schema_version": 0,
           "attributes": {
-            "id": "projects/pmuir-dev/serviceAccounts/keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com/keys/b3f9120b52ca4fc8b09544a5a89927eec9d273fb",
+            "id": "projects/pmuir-dev/serviceAccounts/keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com/keys/bb725d7ede573b9c3e090b778ceae56bd82b83e2",
             "key_algorithm": "KEY_ALG_RSA_2048",
-            "name": "projects/pmuir-dev/serviceAccounts/keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com/keys/b3f9120b52ca4fc8b09544a5a89927eec9d273fb",
+            "name": "projects/pmuir-dev/serviceAccounts/keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com/keys/bb725d7ede573b9c3e090b778ceae56bd82b83e2",
             "pgp_key": null,
-            "private_key": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAicG11aXItZGV2IiwKICAicHJpdmF0ZV9rZXlfaWQiOiAiYjNmOTEyMGI1MmNhNGZjOGIwOTU0NGE1YTg5OTI3ZWVjOWQyNzNmYiIsCiAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxuTUlJRXZnSUJBREFOQmdrcWhraUc5dzBCQVFFRkFBU0NCS2d3Z2dTa0FnRUFBb0lCQVFDZWZSUCtBRnRXLzMwRFxuUW5wWWF1YjFpVmlKeU5ZTzVJajluVVdKU3B0aDdKeHpNRDlFU2FLVVFRbTRCU3oxcHgyUzBaenRFdjFLcE9jY1xuUlN1aWdpT0s1bmhGc0NHMDc2MDA3d01YRmJlY0pRM25xZVlsVk5SR2Exa1NPYk9zMzNXTGpRalFVVXZTekRMZVxuVVE1WE5saTM3NWZ5Nkl1cU94Ny9laFR0TGZIZVN0RGhLaW9LQjZBb3M1dGlmbDUvNzllczRteG4zREVaYkdMOFxuNkxQWjluN0oxNTZSSHRFUlAvTTk0WkNrS2lhUDhIb2E0UzVrNEUzc3ZuZGRPb3diTnNEcUdTZTlzSDQ1M05LWVxucTFJM2IzbUlERHJtM2VXQWxGR244N0Q5TGNJOVNFZ1Q2N3FKRjZ5K2tTL01NMlBUenNtVjFlM2xBWTZ0b1JFaFxubTltdS95TGxBZ01CQUFFQ2dnRUFJK2RzZzhhVGFyQks0eFhvandhNngwV2ozZVQyWDEzVkRmVld4eTAwYWJqM1xuVVY0TSt4eWVYTzBsOVQ4UTZoNi9nNThDYUsrOFczQmpuZU1xcVRCSHVvUVBHNlIwNGw5SXN4enhhNFdqT0plcFxuWUlHOERsbDdGRy9sdUF3RDRRWW5oQ09CYTJYN1lpZ1ozd1RvVllnTmphL1UwYlh1Uy9TRVIzYWg3b0JSMHB4dlxuVHljbjRFMlJJVE1NdmNKVTRJT1Z0bUZiUHhyT3ExZ1Znd3R2WUNLY1pFMFJFcjh3NU5jWW9uT0ZWWXVEYVhtL1xuRzdhWlhJQys0TEYrcDZObVBTWE5VaS9wWEdqWnkvYW9Mdy9nRnJRa0hwVjc0cUNURUkzZHhpSk16S2tsZ0ZFd1xubXRVaG1oc3VUL2J2VEV1NGtQbFIwWXRGT0J0ekZEaUhYK3M2YUdnUEtRS0JnUURacXZVMENxMkcrb3JreXlwd1xuNjFGSHREbm9TeWpMQkZ1V3lKSVo3aDFHTDZKbXBMOXU2dDFlRHVyK3Nic0hZOHdGNTYydXRyZFIva05UdnEvN1xubWs2QWNRMUNlbFJGSUZSOXY4NFJkeml4em1sSVRodWRqeFFYWDNRWncvdmpUQXFqRWZMWEdXbkVrNTFXaVU1clxuTVNBTjJDbmZlZCtmREZXdk41RC9tZCtMQ1FLQmdRQzZaaW9DMzgrOUhjSU02cFZtcXF0WUV6R2NrM2Z0aGFsSFxuVEgzNkJNZ3B4VSsxdlNZRzZjeGE0blp4UEhrZFh1bERHeVh0Wno5Q2RLOGxhUWIzQ1llMG1XUFhmM0J5QVJpUFxubEwvd0FXOXlqZnJ1QWhteHpzMEdvTU5mbVVYVjFJUG4rRWd3ZUFRQ3FLeWp6eEhXNXB6V3dSQW1saC9wUDAwMVxuWk9aczBpeWovUUtCZ1FEUmozNHpkSFJNbDdwUlBDaklQa1lxdXFGbHU3YXlmcWVQSzlzOWk3b3pjSGp5U1hya1xuMXNuNVhITnljcnFXQ3NiS2lKcjJzb01jTmFlc1lOSWRjaHBTSG9XZGt4aSsxTG1EdDc0MW9vcTY1UGNIM2V0SVxuYmcveDBMeCtjZWw0bENWSmltWTZJUVZyZEpMdVZaTmlNQkdrUXBGTnpwQTFHRE1HVm9FTEZLSGJ3UUtCZ1FDZFxuSE0vOGJEbmw1ZGRTbThnaUtXa1RhOW85WisrR1BVdFoxWmU1elo0SjEwNUFtWlliN2FWYVZkZ1B5akVzR0h2MVxuSEVUenZqc01BTjVBWWk2RXUzdXZOanQ1d09rK3JyM05DRXhnT0ZWLzhUeTRzUHlIYXhCVnJkd0FFR2xVdXpRVFxucXFydWI3cXhvd3NoWjhCWnF6ZzNxN081VW9ERFVaLzZpWG5QNzdmQTRRS0JnQjFVeHRwMWRBbVlWVG5Jc1hiS1xuaUJPODlCVldGdUt0TTBYOXdCbzZ5ZjBIYkp4QTh5OHNHVlBHZVd0VzYxSjJrek9vM1Q0c2NjUnJZMHJhempJSFxuSEFJY3NSZXJsd3c1bnRpZi96M0M5WTlkS2xLT1VtNklCOGRIWWZDenFmKzkrTzkycUE0NGRoSmlId2k2cE1VRFxubzV4Smc5Y2QzTUwvV0NxdzBhQVFad2plXG4tLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tXG4iLAogICJjbGllbnRfZW1haWwiOiAia2V5Y2xvYWstZGF0YWJhc2UtbmV3LWNsb3Vkc3FsQHBtdWlyLWRldi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTE2MTYxOTk0NDI5ODUxNzE0ODQiLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5L2tleWNsb2FrLWRhdGFiYXNlLW5ldy1jbG91ZHNxbCU0MHBtdWlyLWRldi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIKfQo=",
+            "private_key": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAicG11aXItZGV2IiwKICAicHJpdmF0ZV9rZXlfaWQiOiAiYmI3MjVkN2VkZTU3M2I5YzNlMDkwYjc3OGNlYWU1NmJkODJiODNlMiIsCiAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxuTUlJRXZBSUJBREFOQmdrcWhraUc5dzBCQVFFRkFBU0NCS1l3Z2dTaUFnRUFBb0lCQVFDblNzSG1OU3JNS0VpVlxuNXNQYjFvaDYxb2R6ekUvUmdPZ2FvZXUwYng4OHhBeWdKQXNuS2ZPSEpqQmduZENkMi9ONU4yTldYRUpHYzAyWVxubjdhT2FRaUt3NlU2ekNvWitZd3RjL1o2a0czQU5PZWp4VDZQeWladmtCWHBWN3BHcGFGQnBmTGlJdHpONFFhaVxuMytHTE1oZFg0OEcrMnRuTFNKT0Q1emJTdm5rM3F6OGxSOUFFamRjMkZwTDJZOUltU285S205a0Y5dTRmcU5xQVxuQlljUGJ5bUpjeUI0RXB6QXFxMTNlMnYySFNoZUltL3U5VmdIV3lBVDFrV0FjU2hNRE0vcDFBRFBNZWRNc3dLUFxub1doMnhqVXFUeS9VSWNPRGNzb1hHZ0srRHg5cEtMR09kSlJiWlBiejNvMnQ1Z2Ivd3plOVJodjBsMTl6Tk1lcVxub1VWOHRpcGRBZ01CQUFFQ2dnRUFCbkQ5Q0hZNngyRWVzd2VQWk44bllxUWJmam5iUjBFUmVYaGd3N3kxUlI1Slxuc1NuVXljV0EvdzdEOVVNUkFGOElIOU9pT010S2NhZ291dmJJQXB3OTRWL3Vud0N6b2ZhUjcwSEVOMkcrYnI5QVxuRXd0NklQTU5sS1ZGaVdEMkhHM0RYaXg3cnJtSHdIVkl1amFUYitGZ3lqZ2hZbzM1TGExYlRBeDM5OWlGMWltVlxudmMwRnNac0hKMzJZcCthZFA3UGJOUFZOVTRiM0FKbXNtZk1HcnJ5b2dRaVdEZkN6aW4xcEdTZzVLcW5SL2JpK1xuUlNyNFV0VWlIQnFzT2pLZTlkYUdvcHFNNFBVVlRpSTNwbW92T05KSGovQUJ0MlJ3VTQwcWNPR3ZTdGdHeDZRSVxudzlHdC9RTFdqcGFwajlOeDE0ZFp0ajdsSTdOYkhEQUdIWEJGVXYrZFNRS0JnUURqYmdOTnFSUGhNQVBEcDRmRlxuZVNuVUtnZlRiT3JGVitqMlF5cGE4YU1vcG9kWnFjMVlsdDFzMSsrcWVvbGdMQ3hWZGlzU0ZHOHVBc0RZNlhqNlxuR1hmUE42MkJOMDUxZkQrTmRsc3AzMTRWYnJ1NFQ3bzFLVFZDODFUeGRzcldkYVFBREtWUmZpY1JKWmdWcU1TU1xuWHIrSm1JSllualhINXVBaVhSaU1sSVp2V1FLQmdRQzhUc0dPRmxEZmRTMkV1L3ZRUDJxTGUwcFFxOHRzUTF0TVxuOGxxTjhrcUZTdTZCdmJ2U0ZzanNaV3FaZjJaZUdZNUpqYlRwRlU4ZVdjKzRUU0VpR3BjdnhiaEdhS0FML3ZKT1xuOXkvcFk5UHRGbGRaeVNlaEJTOFk4WTVyVGI1OFRUb3IwLzFTYnkrNHZGYXowMnR0NHAvWW45aWhqYXY3ZU1Wa1xuc1E4MXBWeldwUUtCZ0hETUIyZGxEQzhMbVZKWXJNWU1LZXJJVGNsV283bnN0K1lydWI0UlNsTEhCU283UlZWQ1xudmQ5VjJkQTdwaGJFMGRneEczdUVGd0JDN1ZLbnVSQ1J3UkpORXdpYlhaWjNZUzNRSGJiT3llTG5ZTU14QjdHR1xuRnB4MkF4TWZUOHE5M2ZFSVZKWHVjNEhWbTNCaW05dmNrakswS1RHNmhnSDNTQUxER1lIZnlDMUJBb0dBQXREYVxuckJsQlZGWVlQQ2ZqZUJXNnJpTkYxVGI4Yjc0Q0c0QjBRak1oVWlUd3RCZjJPd29FTHlURkYwNkVaVnZVZU4wWlxubTNLcUlEWVBtUjN1Sk9obzRsbitpMjc5RmJEV1JzQURnMlh1d1ZqWUxZdUlnQ3ZuckdQUVVXSjBPcitjNHhMa1xuY3RzZXg1QnBhMzc1MkViUFJSbit6MHVqQ3J1Zm1BWGR5RnVVcTlFQ2dZQWtCS253b2pIRlFGY3BsTXpHSk9Bc1xuTVQybHZnUGJVT2JpMzZTdHhDbjBWOFdMQ2J5K1FXeDQyc0Z2V2dMUGFZRGRKZkZ3OUM0NGxCR1NFZVNzRXY3dlxuL0hqM2pTQUhmTmNSTzJUZ1k2MzA3dEtMZTdtRUdtaHBlQk50dXlrWEZ3MDhjS0t1KzF0ZmJQSnJqdU1TRmNzbVxua2lmWmZzS2dvRW5JVEcveFJ3cmVoQT09XG4tLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tXG4iLAogICJjbGllbnRfZW1haWwiOiAia2V5Y2xvYWstZGF0YWJhc2UtY2xvdWRzcWxAcG11aXItZGV2LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAiY2xpZW50X2lkIjogIjExNjQ0NzIxOTc0OTI5MDk2MzY1MyIsCiAgImF1dGhfdXJpIjogImh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9vL29hdXRoMi9hdXRoIiwKICAidG9rZW5fdXJpIjogImh0dHBzOi8vb2F1dGgyLmdvb2dsZWFwaXMuY29tL3Rva2VuIiwKICAiYXV0aF9wcm92aWRlcl94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL29hdXRoMi92MS9jZXJ0cyIsCiAgImNsaWVudF94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL3JvYm90L3YxL21ldGFkYXRhL3g1MDkva2V5Y2xvYWstZGF0YWJhc2UtY2xvdWRzcWwlNDBwbXVpci1kZXYuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iCn0K",
             "private_key_encrypted": null,
             "private_key_fingerprint": null,
             "private_key_type": "TYPE_GOOGLE_CREDENTIALS_FILE",
-            "public_key": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvRENDQWVTZ0F3SUJBZ0lJV1N0NWx1S0hEVW93RFFZSktvWklodmNOQVFFRkJRQXdJREVlTUJ3R0ExVUUKQXhNVk1URXhOakUyTVRrNU5EUXlPVGcxTVRjeE5EZzBNQ0FYRFRJd01Ea3hOekV4TlRFek4xb1lEems1T1RreApNak14TWpNMU9UVTVXakFnTVI0d0hBWURWUVFERXhVeE1URTJNVFl4T1RrME5ESTVPRFV4TnpFME9EUXdnZ0VpCk1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQ2VmUlArQUZ0Vy8zMERRbnBZYXViMWlWaUoKeU5ZTzVJajluVVdKU3B0aDdKeHpNRDlFU2FLVVFRbTRCU3oxcHgyUzBaenRFdjFLcE9jY1JTdWlnaU9LNW5oRgpzQ0cwNzYwMDd3TVhGYmVjSlEzbnFlWWxWTlJHYTFrU09iT3MzM1dMalFqUVVVdlN6RExlVVE1WE5saTM3NWZ5CjZJdXFPeDcvZWhUdExmSGVTdERoS2lvS0I2QW9zNXRpZmw1Lzc5ZXM0bXhuM0RFWmJHTDg2TFBaOW43SjE1NlIKSHRFUlAvTTk0WkNrS2lhUDhIb2E0UzVrNEUzc3ZuZGRPb3diTnNEcUdTZTlzSDQ1M05LWXExSTNiM21JRERybQozZVdBbEZHbjg3RDlMY0k5U0VnVDY3cUpGNnkra1MvTU0yUFR6c21WMWUzbEFZNnRvUkVobTltdS95TGxBZ01CCkFBR2pPREEyTUF3R0ExVWRFd0VCL3dRQ01BQXdEZ1lEVlIwUEFRSC9CQVFEQWdlQU1CWUdBMVVkSlFFQi93UU0KTUFvR0NDc0dBUVVGQndNQ01BMEdDU3FHU0liM0RRRUJCUVVBQTRJQkFRQXFjR2pUczZDTFdUajZmdGxWbkU1UwpLT2VuMW5WcXh0R2ZzMmwrMmRScGlVRUdlYzNoTWtaMXhGK1orN3F0TVZHWXJLaExGdzdDKzFsN2pQS3c0M2NNCnJXTjkvd1JsbWNsV09VSGVPZGJpS1hsTUNrcE5OeTJPL1cyWnUyV3EzUHY4c0pCbVAvMzlsSG9QVjJqa0tRS2EKYXRxNWhHY2pBS3ZNK0F1Q1NlKzF2WGRLWitYdnhKODI1SzJuOVJyaGJKdGV2eEFwb0swQWROeG9maDgreDZNWgpjajJtM2FmbmN5bXZtSXg0NVpvU2ZrL3MvR3NKdTlYbTQvakJtdkNrOFkva1lnK1V6bnc1Umc3VU9hR016eFZrCndSUElVdDlYZWoxVzVzR0FWN01pV3dtREloeUw2RHB2dEpEYW51VGtLN0pGQmlxNjZlWXhqK3Rxcy85WEpUVDMKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
+            "public_key": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvRENDQWVTZ0F3SUJBZ0lJUkt4emFYL3dmdGN3RFFZSktvWklodmNOQVFFRkJRQXdJREVlTUJ3R0ExVUUKQXhNVk1URTJORFEzTWpFNU56UTVNamt3T1RZek5qVXpNQ0FYRFRJd01Ea3hOakV5TVRNd04xb1lEems1T1RreApNak14TWpNMU9UVTVXakFnTVI0d0hBWURWUVFERXhVeE1UWTBORGN5TVRrM05Ea3lPVEE1TmpNMk5UTXdnZ0VpCk1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQ25Tc0htTlNyTUtFaVY1c1BiMW9oNjFvZHoKekUvUmdPZ2FvZXUwYng4OHhBeWdKQXNuS2ZPSEpqQmduZENkMi9ONU4yTldYRUpHYzAyWW43YU9hUWlLdzZVNgp6Q29aK1l3dGMvWjZrRzNBTk9lanhUNlB5aVp2a0JYcFY3cEdwYUZCcGZMaUl0ek40UWFpMytHTE1oZFg0OEcrCjJ0bkxTSk9ENXpiU3ZuazNxejhsUjlBRWpkYzJGcEwyWTlJbVNvOUttOWtGOXU0ZnFOcUFCWWNQYnltSmN5QjQKRXB6QXFxMTNlMnYySFNoZUltL3U5VmdIV3lBVDFrV0FjU2hNRE0vcDFBRFBNZWRNc3dLUG9XaDJ4alVxVHkvVQpJY09EY3NvWEdnSytEeDlwS0xHT2RKUmJaUGJ6M28ydDVnYi93emU5Umh2MGwxOXpOTWVxb1VWOHRpcGRBZ01CCkFBR2pPREEyTUF3R0ExVWRFd0VCL3dRQ01BQXdEZ1lEVlIwUEFRSC9CQVFEQWdlQU1CWUdBMVVkSlFFQi93UU0KTUFvR0NDc0dBUVVGQndNQ01BMEdDU3FHU0liM0RRRUJCUVVBQTRJQkFRQk8yZjlXeWxibmcvS1RzeFgwaVozbApPZU4xYXdxeWt5c2d1Y2lzSWVRWjdRRE1BTDE5ZjgrZWczZEprbmxYRlBVYnAwT3lTa3MzVytUTG9vWi9TWVhwCk5LSXpicHpJeW9zV1NTSkF2VGNkM1NLaXgvcUhmODVtcVJ3TEJnM2FuVjk0ZUhMWGlQQzFGemY1cjJxbWJZOU4KaWtFb2RnNmxIb0tuYnR2aFM5dSs3WFB1eUVVSGM3L1pZWUpQendIUEp5Qm9PSURqbWp3YWZjekMrL3E3WG9iVgpzcXh5aW1iRWoxWDVKbWcrTEM5U3QwYUM0NG4rTzB5Skl0dy80L3BUb05kNWZCMmtaUGdWVkN4bFFpcUVxT3lXClRLZFVOdzExeUNnN3I3TExwZzErbzEvRmhjdTNJVkRraVhLYWEzMnFWL0RsS0lyWnN0b2xoZjAvY1JndUp1SmYKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
             "public_key_data": null,
             "public_key_type": "TYPE_X509_PEM_FILE",
-            "service_account_id": "projects/pmuir-dev/serviceAccounts/keycloak-database-new-cloudsql@pmuir-dev.iam.gserviceaccount.com",
-            "valid_after": "2020-09-17T11:51:37Z",
+            "service_account_id": "projects/pmuir-dev/serviceAccounts/keycloak-database-cloudsql@pmuir-dev.iam.gserviceaccount.com",
+            "valid_after": "2020-09-16T12:13:07Z",
             "valid_before": "9999-12-31T23:59:59Z"
           },
           "private": "bnVsbA==",
@@ -1540,7 +1539,7 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_service_account.service_account",
+            "module.keycloak_database.google_service_account.service_account",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1548,7 +1547,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_sql_database_instance",
       "name": "database",
@@ -1557,40 +1556,40 @@
         {
           "schema_version": 0,
           "attributes": {
-            "connection_name": "pmuir-dev:europe-west1:keycloak-database-new",
+            "connection_name": "pmuir-dev:europe-west1:keycloak-database",
             "database_version": "POSTGRES_10",
-            "first_ip_address": "34.76.147.57",
-            "id": "keycloak-database-new",
+            "first_ip_address": "35.187.117.68",
+            "id": "keycloak-database",
             "ip_address": [
               {
-                "ip_address": "34.76.147.57",
+                "ip_address": "35.187.117.68",
                 "time_to_retire": "",
                 "type": "PRIMARY"
               }
             ],
             "master_instance_name": "",
-            "name": "keycloak-database-new",
+            "name": "keycloak-database",
             "private_ip_address": "",
             "project": "pmuir-dev",
-            "public_ip_address": "34.76.147.57",
+            "public_ip_address": "35.187.117.68",
             "region": "europe-west1",
             "replica_configuration": [],
             "root_password": null,
-            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/pmuir-dev/instances/keycloak-database-new",
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/pmuir-dev/instances/keycloak-database",
             "server_ca_cert": [
               {
-                "cert": "-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyQ3Y2Zk\nZDhmNi02YmE5LTRhYzktOGUxMy02Njg4ODFjYTRhNmYxIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjAwOTE3MTE1MTQ1WhcNMzAwOTE1MTE1MjQ1WjB3MS0wKwYD\nVQQuEyQ3Y2ZkZDhmNi02YmE5LTRhYzktOGUxMy02Njg4ODFjYTRhNmYxIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCR9w2C3w3xKPdwff3gD/HdNqzKuDK6UptfF4qMWefgJAXY120F2lOtc1Bl1+5v\n4nJBRalF2TDZ7cAc8fIwH/rACeuYqfPLjiqMXCDJ60JduQF+f7ZMZ59N0sBeaxUX\nuEe1RJBkABmdoQ8hEDxJpnuQ9cBQnuakdJzHKkEdGGaWhBKfpzjkO2t+HlRZaJ/F\n0e2UOeVEYLeaz6eIrSolM86UDGJMYkHLR8yCZ2qzI4xLvSsm5vPJWRoJEb6nDnuJ\n1oCdZ7vlAJi5f0NIfEFDo+TriCaRTUBZUa74aoWW+d7j2ymbfVxS14NflS3kwopS\nM+lC/JAmOVsTZbmIQ3ydGDfFAgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBABaiGQL+ostXNCLM+iV4iI+UCQ1OgMwxoOADXT+5\nTE04JxVgk0j0WUMin4BHvcPNTbciE9RPzJExFoUPEc0Y8tDISFfGXhaNEFz6Entz\n/ACckVteH23S/uM+OavknMejzy20q3ImnKDiSVwe7SgeKfCmB+6QE3US5RGZIl0N\nvPCRSqPC/Kr9uPQolp5frq8P57Tm2K7vzp3Y6B5PIRXodKzVMQ8xjiimDR14HRgi\nu44A9odCkAqzNOf8wIkKdZ9fEeNZ8aa3OJoPTzClWnGnB8ojzCl/0iiJXeoSjqAc\nRZpQFWknfOZ789T4aWrHPAWEOiOVxY2k6MEH7Fwe7WEmz9k=\n-----END CERTIFICATE-----",
-                "common_name": "C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=7cfdd8f6-6ba9-4ac9-8e13-668881ca4a6f",
-                "create_time": "2020-09-17T11:51:45.298Z",
-                "expiration_time": "2030-09-15T11:52:45.298Z",
-                "sha1_fingerprint": "c55b5d0eb6773b9d5f98aded4ba2ddb2eb5a17cd"
+                "cert": "-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyQ3NWUz\nNmRkZS1iMGUwLTQwZWEtOGRiMi01YTQ2OWIzMGI0YzUxIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjAwOTE2MTIxMzIzWhcNMzAwOTE0MTIxNDIzWjB3MS0wKwYD\nVQQuEyQ3NWUzNmRkZS1iMGUwLTQwZWEtOGRiMi01YTQ2OWIzMGI0YzUxIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCjUN8ZPqO2q34dyV3eHprJbYfI6n+9o4tjcEskKDfJVie1YdyBp3mI9mDDRq2C\nth3KfASAQ1Bd4h4aER2t1FiMahzzj4C3AlP/K2f2fKIfItIFSkbE4U+TI2S8PKlO\n03VXNkVHimXLH39B1dCVIKEvy6pKUv9Js1XaeBQLfhHmVCxAWhfSh7HX1rewsBep\nzIPtAMCb/DSwUpoFdNfFzFbHDw2JcHwqUqvK5upHaLOke8AA1Za7puUNN6v0bhT0\njK/k8b6f0oKhBylWtCF+9IbAwIcgvWFuqLiMerhW13plSaQc/jZL5/1rwWCLOm8l\nYcaMOTMwoqJQgtD7UwXFBu7zAgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBAE9taZcDWZuORdVX6PSVaqNCeoM9LJl1gnzvhlIY\nUjsaK3XIGgtaj+oNquZIk92fJ9AqkritZob3lIWaOH8DUngU05BBRb9tjGA75OQi\nt24S3Lh6Fc7TVAU6DmJRFKbZq9YnbCBl0BgKPlmW8vmuIhe6KR2JkcJ5hM0f0jaR\nmxvxSam9+xj8ErCGvrHGg9YRZGDCp5tAUnqwQa3DjdOpi234qr0z8lBchdHeTFMc\neRyVvGTlBtsXTtOGDgXzEljtBEo1hMayLKoMxVww6P81oT1QDYexg4qmNb2PB3aF\nH/8qSW1oeXBVaurprmMwjjEnBQrMaVMGyxLMgiotUb6IQlU=\n-----END CERTIFICATE-----",
+                "common_name": "C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=75e36dde-b0e0-40ea-8db2-5a469b30b4c5",
+                "create_time": "2020-09-16T12:13:23.360Z",
+                "expiration_time": "2030-09-14T12:14:23.360Z",
+                "sha1_fingerprint": "e5144ec0ab2f79d282842275180b370f0ab91fea"
               }
             ],
-            "service_account_email_address": "p1063004576079-fvn47x@gcp-sa-cloud-sql.iam.gserviceaccount.com",
+            "service_account_email_address": "p1063004576079-siq7l1@gcp-sa-cloud-sql.iam.gserviceaccount.com",
             "settings": [
               {
                 "activation_policy": "ALWAYS",
-                "authorized_gae_applications": null,
+                "authorized_gae_applications": [],
                 "availability_type": "",
                 "backup_configuration": [
                   {
@@ -1624,7 +1623,7 @@
                 "pricing_plan": "PER_USE",
                 "replication_type": "SYNCHRONOUS",
                 "tier": "db-f1-micro",
-                "user_labels": null,
+                "user_labels": {},
                 "version": 1
               }
             ],
@@ -1642,7 +1641,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "google_sql_user",
       "name": "user",
@@ -1652,10 +1651,10 @@
           "schema_version": 1,
           "attributes": {
             "host": "",
-            "id": "postgres//keycloak-database-new",
-            "instance": "keycloak-database-new",
+            "id": "postgres//keycloak-database",
+            "instance": "keycloak-database",
             "name": "postgres",
-            "password": "ZCGrQsdoFrHACjzb",
+            "password": "lWu5LPbp7I88aHN1",
             "project": "pmuir-dev",
             "timeouts": null
           },
@@ -1664,8 +1663,8 @@
             "module.cluster.google_container_cluster.primary",
             "module.cluster.google_container_node_pool.primary_preemptible_nodes",
             "module.cluster.google_project_service.container_api",
-            "module.keycloak_database_new.google_sql_database_instance.database",
-            "module.keycloak_database_new.random_password.password",
+            "module.keycloak_database.google_sql_database_instance.database",
+            "module.keycloak_database.random_password.password",
             "module.secrets.google_service_account.external_secrets",
             "module.secrets.google_service_account_iam_member.external_secrets"
           ]
@@ -1673,7 +1672,7 @@
       ]
     },
     {
-      "module": "module.keycloak_database_new",
+      "module": "module.keycloak_database",
       "mode": "managed",
       "type": "random_password",
       "name": "password",
@@ -1692,7 +1691,7 @@
             "min_upper": 0,
             "number": true,
             "override_special": null,
-            "result": "ZCGrQsdoFrHACjzb",
+            "result": "lWu5LPbp7I88aHN1",
             "special": false,
             "upper": true
           },
@@ -1730,9 +1729,7 @@
             "self_link": "https://www.googleapis.com/compute/v1/projects/pmuir-dev/regions/europe-west1/addresses/demo-cluster-ip-address",
             "subnetwork": "",
             "timeouts": null,
-            "users": [
-              "https://www.googleapis.com/compute/v1/projects/pmuir-dev/regions/europe-west1/forwardingRules/a4c15494d93e24ea29365f38ea97640a"
-            ]
+            "users": []
           },
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0="
         }

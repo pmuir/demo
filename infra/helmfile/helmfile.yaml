@@ -11,9 +11,13 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
+- path: external-dns.yaml
+  values:
+    - values.yaml
+    - generated.yaml
 - path: olm-crds.yaml
 - path: olm.yaml
-- path: external-secrets.yaml
+- path: external-dns.yaml
   values:
   - values.yaml
   - generated.yaml

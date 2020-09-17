@@ -13,6 +13,7 @@ locals {
       mysqlPropertiesSecretName: var.mysql_properties_secret_name
       serviceAccountSecretName: var.database_service_account_secret_name
       name: var.database_name
+      instanceName: var.database_instance_name
       project: var.database_project
       region: var.database_region
       port: var.database_port
@@ -22,18 +23,24 @@ locals {
       passwordSecretName: var.keycloak_database_password_secret_name
       serviceAccountSecretName: var.keycloak_database_service_account_secret_name
       name: var.keycloak_database_name
+      instanceName: var.keycloak_database_instance_name
       project: var.keycloak_database_project
       region: var.keycloak_database_region
       port: var.keycloak_database_port
     }
     loadBalancer: {
       ip: var.load_balancer_ip
-      fqdn: var.fqdn
+      suffix: var.domain_suffix
     }
     certManager: {
       googleServiceAccount: var.cert_manager_google_service_account
       kubernetesServiceAccount: var.cert_manager_kubernetes_service_account
       namespace: var.cert_manager_namespace
+    }
+    externalDns: {
+      googleServiceAccount: var.external_dns_google_service_account
+      kubernetesServiceAccount: var.external_dns_kubernetes_service_account
+      namespace: var.external_dns_namespace
     }
   }
 }

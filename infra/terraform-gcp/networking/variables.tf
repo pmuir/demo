@@ -5,8 +5,8 @@ variable "gcp_project" {
   description = "The name of the gcp_project"
 }
 
-variable "host_name" {
-  description = "The domain name e.g. demo"
+variable "name" {
+  description = "The system name e.g. demo"
 }
 
 variable "suffix" {
@@ -26,4 +26,19 @@ variable "cert_manager_namespace" {
 variable "cert_manager_kubernetes_service_account" {
   description = "The kubernetes service account to use for cert-manager"
   default = "cert-manager"
+}
+
+variable "external_dns_google_service_account" {
+  description = "The google service account to use for external-dns"
+  default = "externaldns"
+}
+
+variable "external_dns_namespace" {
+  description = "The namespace to use for external-dns"
+  default = "external-dns"
+}
+
+variable "external_dns_kubernetes_service_account" {
+  description = "The kubernetes service account to use for external-dns"
+  default = "external-dns"
 }

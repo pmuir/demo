@@ -7,6 +7,6 @@ metadata:
 spec:
   instances: {{ .Values.keycloak.replicas }}
   externalAccess:
-    enabled: true
+    enabled: false
   externalDatabase:
     enabled: true

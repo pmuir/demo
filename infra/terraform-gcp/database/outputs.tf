@@ -6,8 +6,12 @@ output "mysql_properties_password_secret_name" {
   value = google_secret_manager_secret.mysql_properties.secret_id
 }
 
-output "database_name" {
+output "database_instance_name" {
   value = google_sql_database_instance.database.name
+}
+
+output "database_name" {
+  value = google_sql_database.database.name
 }
 
 output "database_project" {

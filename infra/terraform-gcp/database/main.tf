@@ -31,6 +31,11 @@ resource "google_sql_database_instance" "database" {
   }
 }
 
+resource "google_sql_database" "database" {
+  name = "database"
+  instance = google_sql_database_instance.database.name
+}
+
 # Create the database user password
 
 resource "random_password" "password" {

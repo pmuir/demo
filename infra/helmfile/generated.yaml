@@ -8,12 +8,17 @@
   "kubernetesServiceAccount": "cert-manager"
   "namespace": "cert-manager"
 "database":
+  "instanceName": "database"
   "mysqlPropertiesSecretName": "database-mysql-proerties"
   "name": "database"
   "port": 5432
   "project": "pmuir-dev"
   "region": "europe-west1"
   "serviceAccountSecretName": "database-service-account-key"
+"externalDns":
+  "googleServiceAccount": "externaldns@pmuir-dev.iam.gserviceaccount.com"
+  "kubernetesServiceAccount": "external-dns"
+  "namespace": "external-dns"
 "externalSecrets":
   "googleServiceAccount": "externalsecrets@pmuir-dev.iam.gserviceaccount.com"
   "kubernetesServiceAccount": "external-secrets"
@@ -21,13 +26,14 @@
 "gcp":
   "project": "pmuir-dev"
 "keycloakDatabase":
-  "name": "keycloak-database"
-  "passwordSecretName": "keycloak-database-database-password"
+  "instanceName": "keycloak-database-new"
+  "name": "database"
+  "passwordSecretName": "keycloak-database-new-database-password"
   "port": 5432
   "project": "pmuir-dev"
   "region": "europe-west1"
-  "serviceAccountSecretName": "keycloak-database-service-account-key"
+  "serviceAccountSecretName": "keycloak-database-new-service-account-key"
   "username": "postgres"
 "loadBalancer":
-  "fqdn": "demo.g.bleepbleep.org.uk"
-  "ip": "35.241.153.243"
+  "ip": "35.233.17.204"
+  "suffix": "g.bleepbleep.org.uk"

@@ -30,6 +30,10 @@ variable "database_name" {
   description = "The name of the Cloud SQL database"
 }
 
+variable "database_instance_name" {
+  description = "The name of the Cloud SQL database instance"
+}
+
 variable "database_project" {
   description = "The project which the Cloud SQL database is in"
 }
@@ -54,6 +58,10 @@ variable "keycloak_database_password_secret_name" {
   description = "The name of the Google Secret Manager resource the database password"
 }
 
+variable "keycloak_database_instance_name" {
+  description = "The name of the Cloud SQL database instance"
+}
+
 variable "keycloak_database_name" {
   description = "The name of the Cloud SQL database"
 }
@@ -75,8 +83,8 @@ variable "load_balancer_ip" {
   description = "The IP address of the cluster load balancer"
 }
 
-variable "fqdn" {
-  description = "The FQDN of the cluster load balancer"
+variable "domain_suffix" {
+  description = "The domain suffix of the cluster load balancer (e.g. g.bleepbleep.org.uk)"
 }
 
 variable "cert_manager_kubernetes_service_account" {
@@ -89,4 +97,16 @@ variable "cert_manager_google_service_account" {
 
 variable "cert_manager_namespace" {
   description = "The Kubernetes namespace used by cert manager"
+}
+
+variable "external_dns_kubernetes_service_account" {
+  description = "The Kubernetes Service Account used by External DNS"
+}
+
+variable "external_dns_google_service_account" {
+  description = "The email address of the GCP Service Account used for External DNS"
+}
+
+variable "external_dns_namespace" {
+  description = "The Kubernetes namespace used by External DNS"
 }

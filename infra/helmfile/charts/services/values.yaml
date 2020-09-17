@@ -13,4 +13,11 @@ kafka:
   version: 2.5.0
 keycloak:
   name: demo-keycloak
-  replicas: 2
+  replicas: 1
+  hostName: keycloak
+  service:
+    name: keycloak
+    port: 8443
+loadBalancer:
+  suffix: local
+

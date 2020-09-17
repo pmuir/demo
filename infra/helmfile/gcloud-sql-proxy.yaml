@@ -14,7 +14,7 @@ releases:
     existingSecretKey: "credentials.json"
     cloudsql:
       instances:
-        - instance: "{{ .Values.database.name }}"
+        - instance: "{{ .Values.database.instanceName }}"
           project: "{{ .Values.database.project }}"
           region: "{{ .Values.database.region }}"
           port: {{ .Values.database.port }}

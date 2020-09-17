@@ -31,3 +31,10 @@ releases:
         name: keycloak-operator
         source: operatorhubio-catalog
         sourceNamespace: olm
+
+## NOTES
+# Keycloak operator generates an admin password for you (no option to override) and it seems to be base64 encoded twice (?)
+#  What's generated appears to be junk
+# I've manually updated the secret it creates with a new password, and restarted the pod
+# This doesn't seem to really work. So I had to drop the database and then restart again to get the right username/password in
+
