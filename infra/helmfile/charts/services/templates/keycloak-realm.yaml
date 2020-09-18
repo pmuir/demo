@@ -1,0 +1,18 @@
+{{- $keycloakName := .Values.keycloak.name }}
+{{- range .Values.keycloak.realms }}
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: {{ .name }}
+  labels:
+    keycloak.org/realm: {{ .name }}
+spec:
+  realm:
+    id: {{ .name }}
+    realm: {{ .name }}
+    enabled: True
+    displayName: "{{.name }} Realm"
+  instanceSelector:
+    matchLabels:
+      keycloak.org/keycloak: {{ $keycloakName }}
+{{- end }}

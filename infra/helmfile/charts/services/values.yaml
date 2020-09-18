@@ -18,6 +18,7 @@ keycloak:
   service:
     name: keycloak # This seems to be a static value?
     port: 8443
+  realms: []
 loadBalancer:
   suffix: local
 

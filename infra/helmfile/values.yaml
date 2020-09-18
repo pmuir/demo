@@ -8,3 +8,6 @@ ingress:
 certManager:
   email: pmuir@bleepbleep.org.uk
   version: v0.14.0
+keycloak:
+  realms:
+  - name: basic

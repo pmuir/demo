@@ -4,6 +4,13 @@ releases:
   createNamespace: true
   chart: stable/oauth2-proxy
   version: 3.2.2
+  values:
+  - config:
+      existingSecret: oauth2-proxy
+    extraArgs:
+      oidc-issuer-url: https://keycloak.g.bleepbleep.org.uk/auth/realms/basic
+      upstream: http://app-demo-app
+      skip-provider-button: "true"
 - name: app
   namespace: app
   createNamespace: true
@@ -30,3 +37,5 @@ releases:
             - app.{{ .Values.loadBalancer.suffix }}
   - image:
       tag: latest
+  - gcp:
+      project: {{ .Values.gcp.project }}
