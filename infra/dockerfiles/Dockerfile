@@ -1,4 +1,4 @@
-FROM strimzi/kafka:0.18.0-kafka-2.5.0
+FROM strimzi/kafka:0.19.0-kafka-2.5.0
 USER root:root
 RUN mkdir -p /opt/kafka/plugins/debezium
 RUN curl https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/1.3.0.Beta1/debezium-connector-mysql-1.3.0.Beta1-plugin.tar.gz | tar xvz --strip-components=1 -C /opt/kafka/plugins/debezium/

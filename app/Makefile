@@ -6,8 +6,8 @@ deploy: publish
 
 .PHONY: publish
 publish:
-	yarn build
-	docker build -t pmuir/demo-app:$(TAG) .
+	cd frontend; yarn build
+	docker build -t pmuir/demo-app:$(TAG) ./frontend
 	docker push pmuir/demo-app:$(TAG)
 
 .PHONY: clean

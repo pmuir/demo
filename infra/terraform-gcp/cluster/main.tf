@@ -36,7 +36,11 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   provider = google-beta
   name       = "${var.cluster_name}-node-pool"
   cluster    = google_container_cluster.primary.name
-  node_count = 1
+  autoscaling {
+    max_node_count = 8
+    min_node_count = 2
+  }
+  initial_node_count = 2
 
   node_config {
     preemptible  = true

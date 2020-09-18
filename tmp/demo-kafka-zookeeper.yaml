@@ -1,0 +1,133 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: demo-kafka-zookeeper
+spec:
+  podManagementPolicy: Parallel
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      strimzi.io/cluster: demo-kafka
+      strimzi.io/kind: Kafka
+      strimzi.io/name: demo-kafka-zookeeper
+  serviceName: demo-kafka-zookeeper-nodes
+  template:
+    metadata:
+      annotations:
+        strimzi.io/cluster-ca-cert-generation: "0"
+        strimzi.io/generation: "39"
+        strimzi.io/logging-hash: 22d043f165538ef1b749008cc4ba4477719d5c9534577805d79d041780536ac1c06807069afa04e798bbe99409cfca5c9d71adbf22a5a7d4eab64b4a66897ccd
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: demo-kafka
+        app.kubernetes.io/managed-by: strimzi-cluster-operator
+        app.kubernetes.io/name: zookeeper
+        app.kubernetes.io/part-of: strimzi-demo-kafka
+        strimzi.io/cluster: demo-kafka
+        strimzi.io/kind: Kafka
+        strimzi.io/name: demo-kafka-zookeeper
+      name: demo-kafka-zookeeper
+    spec:
+      containers:
+      - command:
+        - /opt/kafka/zookeeper_run.sh
+        env:
+        - name: ZOOKEEPER_METRICS_ENABLED
+          value: "false"
+        - name: ZOOKEEPER_SNAPSHOT_CHECK_ENABLED
+          value: "true"
+        - name: STRIMZI_KAFKA_GC_LOG_ENABLED
+          value: "false"
+        - name: DYNAMIC_HEAP_FRACTION
+          value: "0.75"
+        - name: DYNAMIC_HEAP_MAX
+          value: "2147483648"
+        - name: ZOOKEEPER_CONFIGURATION
+          value: |
+            tickTime=2000
+            initLimit=5
+            syncLimit=2
+            autopurge.purgeInterval=1
+        image: docker.io/strimzi/kafka@sha256:961419d795036f5f491817a5652c8f30c531a7b3cafd245d9473812a6a632c19
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - /opt/kafka/zookeeper_healthcheck.sh
+          failureThreshold: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 30
+        name: zookeeper
+        ports:
+        - containerPort: 2888
+          name: tcp-clustering
+          protocol: TCP
+        - containerPort: 3888
+          name: tcp-election
+          protocol: TCP
+        - containerPort: 2181
+          name: tcp-clients
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /opt/kafka/zookeeper_healthcheck.sh
+          failureThreshold: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 30
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/zookeeper
+          name: data
+        - mountPath: /opt/kafka/custom-config/
+          name: zookeeper-metrics-and-logging
+        - mountPath: /opt/kafka/zookeeper-node-certs/
+          name: zookeeper-nodes
+        - mountPath: /opt/kafka/cluster-ca-certs/
+          name: cluster-ca-certs
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 0
+      serviceAccount: demo-kafka-zookeeper
+      serviceAccountName: demo-kafka-zookeeper
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: demo-kafka-zookeeper-config
+        name: zookeeper-metrics-and-logging
+      - name: zookeeper-nodes
+        secret:
+          defaultMode: 292
+          secretName: demo-kafka-zookeeper-nodes
+      - name: cluster-ca-certs
+        secret:
+          defaultMode: 292
+          secretName: demo-kafka-cluster-ca-cert
+  updateStrategy:
+    type: OnDelete
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Gi
+      volumeMode: Filesystem
