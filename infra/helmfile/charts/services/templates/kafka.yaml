@@ -3,15 +3,23 @@ kind: Kafka
 metadata:
   name: {{ .Values.kafka.name }}
 spec:
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
   kafka:
-    replicas: 1
+    version: 2.3.1
+    replicas: 3
     listeners:
-      plain: { }
+      plain: {}
+      external:
+        type: loadbalancer
+        tls: false
       tls: {}
     config:
-      offsets.topic.replication.factor: 1
-      transaction.state.log.replication.factor: 1
-      transaction.state.log.min.isr: 1
+      offsets.topic.replication.factor: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      log.message.format.version: "2.3"
     storage:
       type: jbod
       volumes:
@@ -20,22 +28,8 @@ spec:
           size: 100Gi
           deleteClaim: false
   zookeeper:
-    replicas: 2
+    replicas: 3
     storage:
       type: persistent-claim
       size: 100Gi
       deleteClaim: false
-    readinessProbe:
-      timeoutSeconds: 30
-    livenessProbe:
-      timeoutSeconds: 30
-    resources:
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 500m
-        memory: 1Gi
-  entityOperator:
-    topicOperator: { }
-    userOperator: { }

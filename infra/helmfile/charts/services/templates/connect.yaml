@@ -10,10 +10,10 @@ metadata:
 spec:
   image: {{ .Values.connect.image.repository }}:{{ .Values.connect.image.tag }}
   replicas: 1
-  bootstrapServers: {{ .Values.connect.kafka.name }}-kafka-bootstrap:9093
+  bootstrapServers: {{ $.Values.kafka.name }}-kafka-bootstrap:9093
   tls:
     trustedCertificates:
-      - secretName: {{ .Values.connect.kafka.name }}-cluster-ca-cert
+      - secretName: {{ $.Values.kafka.name }}-cluster-ca-cert
         certificate: ca.crt
   config:
     config.storage.replication.factor: 1
