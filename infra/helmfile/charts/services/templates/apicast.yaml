@@ -5,5 +5,5 @@ metadata:
   # The operator seems to only work on the same namespace it's installed into
   namespace: apicast
 spec:
-  embeddedConfigurationSecretRef:
+  adminPortalCredentialsRef:
     name: apicast-credentials
