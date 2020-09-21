@@ -2,7 +2,7 @@ connect:
   name: debezium
   image:
     repository: pmuir/connect-debezium
-    tag: 1.0.5
+    tag: 0.17.0-kafka-2.4.0
   credentials:
     secretName: connect-credentials
 connectors: []
