@@ -9,12 +9,12 @@ releases:
       existingSecret: oauth2-proxy
     extraArgs:
       oidc-issuer-url: https://keycloak.g.bleepbleep.org.uk/auth/realms/basic
-      upstream: http://app-demo-app
+      upstream: http://app-frontend
       skip-provider-button: "true"
-- name: app
+- name: frontend
   namespace: app
   createNamespace: true
-  chart: ./demo-app
+  chart: ./frontend
   values:
   - ingress:
       enabled: true
@@ -22,8 +22,6 @@ releases:
         name: oauth2-proxy
         port: 80
       annotations:
-        # kubernetes.io/ingress.class: nginx
-        # kubernetes.io/tls-acme: "true"
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/issuer: "letsencrypt-prod"
         nginx.org/redirect-to-https: "true"
@@ -35,7 +33,60 @@ releases:
         - secretName: app-tls
           hosts:
             - app.{{ .Values.loadBalancer.suffix }}
-  - image:
-      tag: latest
   - gcp:
       project: {{ .Values.gcp.project }}
+- name: database-secret
+  chart: incubator/raw
+  namespace: app
+  createNamespace: true
+  values:
+    - resources:
+        - apiVersion: "kubernetes-client.io/v1"
+          kind: ExternalSecret
+          metadata:
+            name: database
+          spec:
+            backendType: gcpSecretsManager
+            projectId: {{ .Values.gcp.project }}
+            data:
+              - key: {{ .Values.mysql.passwordSecretName }}
+                version: latest
+                name: databasePassword
+- name: apicast-secret
+  chart: incubator/raw
+  namespace: app
+  createNamespace: true
+  values:
+    - resources:
+        - apiVersion: "kubernetes-client.io/v1"
+          kind: ExternalSecret
+          metadata:
+            name: apicast
+          spec:
+            backendType: gcpSecretsManager
+            projectId: {{ .Values.gcp.project }}
+            data:
+              - key: apiCastSecretToken
+                version: latest
+                name: secretToken
+- name: backend
+  namespace: app
+  createNamespace: true
+  chart: ./backend
+  values:
+    - ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/issuer: "letsencrypt-prod"
+          nginx.org/redirect-to-https: "true"
+        hosts:
+          - host: inventory.{{ .Values.loadBalancer.suffix }}
+            paths:
+              - /
+        tls:
+          - secretName: inventory-tls
+            hosts:
+              - inventory.{{ .Values.loadBalancer.suffix }}
+    - gcp:
+        project: {{ .Values.gcp.project }}

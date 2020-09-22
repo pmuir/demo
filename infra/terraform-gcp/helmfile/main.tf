@@ -12,6 +12,8 @@ locals {
     mysql: {
       mysqlPropertiesSecretName: var.mysql_properties_secret_name
       serviceAccountSecretName: var.mysql_service_account_secret_name
+      passwordSecretName: var.mysql_password_secret_name
+      username: var.mysql_username
       name: var.mysql_name
       instanceName: var.mysql_instance_name
       project: var.mysql_project

@@ -3,6 +3,10 @@ helmfiles:
     values:
     - ../../../infra/helmfile/values.yaml
     - ../../../infra/helmfile/generated.yaml
+  - path: mysql-gcloud-sql-proxy.helmfile.yaml
+    values:
+      - ../../../infra/helmfile/values.yaml
+      - ../../../infra/helmfile/generated.yaml
   - path: app.helmfile.yaml
     values:
     - ../../../infra/helmfile/values.yaml

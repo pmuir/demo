@@ -1,0 +1,40 @@
+repositories:
+- name: charts.rimusz.net
+  url: https://charts.rimusz.net
+- name: incubator
+  url: https://kubernetes-charts-incubator.storage.googleapis.com
+
+releases:
+- name: "gcloud-sqlproxy"
+  namespace: app
+  createNamespace: true
+  chart: "charts.rimusz.net/gcloud-sqlproxy"
+  values:
+  - existingSecret: gcloud-sqlproxy-secret
+    existingSecretKey: "credentials.json"
+    cloudsql:
+      instances:
+        - instance: "{{ .Values.mysql.instanceName }}"
+          project: "{{ .Values.mysql.project }}"
+          region: "{{ .Values.mysql.region }}"
+          port: {{ .Values.mysql.port }}
+          instanceShortName: cloud-sql-proxy
+  - resources:
+- name: gcloud-sqlproxy-secret
+  chart: incubator/raw
+  namespace: app
+  createNamespace: true
+  values:
+    - resources:
+        - apiVersion: "kubernetes-client.io/v1"
+          kind: ExternalSecret
+          metadata:
+            name: gcloud-sqlproxy-secret
+          spec:
+            backendType: gcpSecretsManager
+            projectId: {{ .Values.gcp.project }}
+            data:
+              - key: {{ .Values.mysql.serviceAccountSecretName }}
+                version: latest
+                name: credentials.json
+                isBinary: true

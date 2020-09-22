@@ -46,6 +46,14 @@ variable "mysql_port" {
   description = "The port the Cloud SQL database is using"
 }
 
+variable "mysql_password_secret_name" {
+  description = "The name of the Google Secret Manager resource the database password"
+}
+
+variable "mysql_username" {
+  description = "The database username"
+}
+
 variable "postgres_service_account_secret_name" {
   description = "The name of the Google Secret Manager resource that contains the service account key for accessing the Cloud SQL database"
 }

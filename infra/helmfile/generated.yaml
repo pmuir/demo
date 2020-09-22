@@ -24,10 +24,12 @@
   "instanceName": "mysql-database"
   "mysqlPropertiesSecretName": "mysql-database-mysql-proerties"
   "name": "database"
+  "passwordSecretName": "mysql-database-database-password"
   "port": 5432
   "project": "pmuir-dev"
   "region": "europe-west1"
   "serviceAccountSecretName": "mysql-database-service-account-key"
+  "username": "mysql"
 "postgres":
   "instanceName": "postgres-database"
   "name": "database"

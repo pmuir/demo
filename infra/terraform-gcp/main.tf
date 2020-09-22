@@ -77,6 +77,8 @@ module "helmfile" {
   mysql_port = module.mysql.database_port
   mysql_project = module.mysql.database_project
   mysql_region = module.mysql.database_region
+  mysql_password_secret_name = module.mysql.database_password_secret_name
+  mysql_username = module.mysql.database_username
   postgres_service_account_secret_name = module.postgres.service_account_secret_name
   postgres_username = module.postgres.database_username
   postgres_password_secret_name = module.postgres.database_password_secret_name

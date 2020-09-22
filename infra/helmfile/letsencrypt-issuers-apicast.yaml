@@ -1,0 +1,9 @@
+releases:
+- name: "letsencrypt-issuers"
+  namespace: apicast
+  createNamespace: true
+  chart: "./charts/letsencrypt-issuers"
+  force: true
+  values:
+  - email: "{{ .Values.certManager.email}}"
+    projectId: {{ .Values.gcp.project }}

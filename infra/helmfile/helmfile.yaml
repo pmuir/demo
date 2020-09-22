@@ -7,6 +7,11 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
+- path: letsencrypt-issuers-apicast.yaml
+  values:
+    - values.yaml
+    - generated.yaml
+
 - path: nginx-ingress.yaml
   values:
   - values.yaml
