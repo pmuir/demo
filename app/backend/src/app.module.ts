@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import {MiddlewareConsumer, Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
@@ -12,6 +12,7 @@ import {Customer} from "./customers/customer.entity";
 import {Order} from "./orders/order.entity";
 import {Product} from "./products/product.entity";
 import {ProductsOnHand} from "./products-on-hand/products-on-hand.entity";
+import {ApiCastAuthorizationMiddleware} from "./middlewares/apiCastAuthorization.middleware";
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -26,6 +27,10 @@ import {ProductsOnHand} from "./products-on-hand/products-on-hand.entity";
     "entities": [ Address, Customer, Order, Product, ProductsOnHand ]
   }), AddressesModule, CustomersModule, OrdersModule, ProductsModule, ProductsOnHandModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService
+  ],
 })
-export class AppModule {}
+export class AppModule {
+
+}

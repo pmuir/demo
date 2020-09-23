@@ -64,6 +64,8 @@ spec:
                 secretKeyRef:
                   name: apicast
                   key: secretToken
+
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
