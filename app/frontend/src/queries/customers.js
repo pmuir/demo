@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const CUSTOMERS = gql`
     query customers {
-        person @rest(type: "Person", path: "customers") {
+        person @rest(type: "Customer", path: "customers") {
             id
             firstName
             lastName
@@ -14,7 +14,7 @@ export const CUSTOMERS = gql`
 export const ADD_CUSTOMER = gql`
     mutation AddCustomer {
         addCustomer(input: $input) 
-            @rest(type: "Person", path: "customers", method: "POST") {
+            @rest(type: "Customer", path: "customers", method: "POST") {
                 type
                 id
             }
