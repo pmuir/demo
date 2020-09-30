@@ -4,6 +4,7 @@ import { CustomersService } from './customers.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Customer} from "./customer.entity";
 import {ApiCastAuthorizationMiddleware} from "../middlewares/apiCastAuthorization.middleware";
+import {LoggerMiddleware} from "../middlewares/logger.middleware";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Customer])],
@@ -12,10 +13,6 @@ import {ApiCastAuthorizationMiddleware} from "../middlewares/apiCastAuthorizatio
 })
 export class CustomersModule {
 
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-        .apply(ApiCastAuthorizationMiddleware)
-        .forRoutes(CustomersController);
-  }
+
 
 }

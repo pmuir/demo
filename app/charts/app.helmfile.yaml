@@ -1,16 +1,4 @@
 releases:
-- name: oauth2-proxy
-  namespace: app
-  createNamespace: true
-  chart: stable/oauth2-proxy
-  version: 3.2.2
-  values:
-  - config:
-      existingSecret: oauth2-proxy
-    extraArgs:
-      oidc-issuer-url: https://keycloak.g.bleepbleep.org.uk/auth/realms/basic
-      upstream: http://app-frontend
-      skip-provider-button: "true"
 - name: frontend
   namespace: app
   createNamespace: true
@@ -18,13 +6,11 @@ releases:
   values:
   - ingress:
       enabled: true
-      service:
-        name: oauth2-proxy
-        port: 80
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/issuer: "letsencrypt-prod"
         nginx.org/redirect-to-https: "true"
+        nginx.org/proxy-buffer-size: "8k"
       hosts:
         - host: app.{{ .Values.loadBalancer.suffix }}
           paths:
@@ -90,3 +76,35 @@ releases:
               - inventory.{{ .Values.loadBalancer.suffix }}
     - gcp:
         project: {{ .Values.gcp.project }}
+    - keycloak:
+        url: https://keycloak.{{ .Values.loadBalancer.suffix }}/auth
+
+- name: smtp-secret
+  chart: incubator/raw
+  namespace: app
+  createNamespace: true
+  values:
+    - resources:
+        - apiVersion: "kubernetes-client.io/v1"
+          kind: ExternalSecret
+          metadata:
+            name: smtp
+          spec:
+            backendType: gcpSecretsManager
+            projectId: {{ .Values.gcp.project }}
+            data:
+              - key: smtpPassword
+                version: latest
+                name: password
+- name: new-customer
+  namespace: app
+  createNamespace: true
+  chart: ./new-customer
+  values:
+    - kafka:
+        brokers:
+          - kafka-cluster-1-kafka-brokers.services:9092
+    - smtp:
+        host: smtp.gmail.com
+        port: 465
+        username: pete.muir@gmail.com

@@ -8,7 +8,7 @@ image:
   repository: pmuir/demo-app-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v1600854298
+  tag: v1601394051
 
 imagePullSecrets: []
 nameOverride: ""
@@ -80,3 +80,7 @@ affinity: {}
 
 mysql:
   username:
+
+keycloak:
+  url:
+  realm: basic

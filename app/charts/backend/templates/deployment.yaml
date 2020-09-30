@@ -35,15 +35,15 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 3001
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -64,7 +64,20 @@ spec:
                 secretKeyRef:
                   name: apicast
                   key: secretToken
-
+            - name: KEYCLOAK_URL
+              value: {{ .Values.keycloak.url }}
+            - name: KEYCLOAK_REALM
+              value: {{ .Values.keycloak.realm }}
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: clientId
+                  name: keycloak
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: clientSecret
+                  name: keycloak
 
       {{- with .Values.nodeSelector }}
       nodeSelector:

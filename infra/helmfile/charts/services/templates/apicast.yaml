@@ -7,3 +7,4 @@ metadata:
 spec:
   adminPortalCredentialsRef:
     name: apicast-credentials
+  logLevel: debug

@@ -38,9 +38,9 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   cluster    = google_container_cluster.primary.name
   autoscaling {
     max_node_count = 8
-    min_node_count = 2
+    min_node_count = 1
   }
-  initial_node_count = 2
+  initial_node_count = 1
 
   node_config {
     preemptible  = true
