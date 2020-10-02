@@ -8,7 +8,7 @@ image:
   repository: pmuir/demo-app-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v1601394051
+  tag: v1601647384
 
 imagePullSecrets: []
 nameOverride: ""

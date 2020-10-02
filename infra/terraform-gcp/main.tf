@@ -1,5 +1,8 @@
 terraform {
-
+  backend "gcs" {
+    bucket = "pmuir-dev-terraform-state"
+    prefix = "demo-app"
+  }
 }
 
 # Specify the GCP Provider
@@ -27,7 +30,7 @@ module "networking" {
   source = "./networking"
   name = local.cluster_name
   gcp_project = local.gcp_project
-  suffix = "g.bleepbleep.org.uk"
+  suffix = "r.bleepbleep.org.uk"
 }
 
 module "cluster" {
@@ -103,3 +106,4 @@ module "shell" {
   gcp_project = local.gcp_project
   zone = local.zone
 }
+

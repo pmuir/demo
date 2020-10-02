@@ -1,4 +1,8 @@
 helmfiles:
+- path: cert-manager-crds.yaml
+  values:
+    - values.yaml
+    - generated.yaml
 - path: cert-manager.yaml
   values:
   - values.yaml
@@ -7,16 +11,16 @@ helmfiles:
   values:
   - values.yaml
   - generated.yaml
-- path: letsencrypt-issuers-apicast.yaml
-  values:
-    - values.yaml
-    - generated.yaml
-
+#- path: letsencrypt-issuers-apicast.yaml
+#  values:
+#    - values.yaml
+#    - generated.yaml
+#
 - path: nginx-ingress.yaml
   values:
   - values.yaml
   - generated.yaml
-- path: external-dns.yaml
+- path: external-secrets.yaml
   values:
     - values.yaml
     - generated.yaml
@@ -36,5 +40,5 @@ helmfiles:
     - generated.yaml
 - path: strimzi.yaml
 - path: keycloak.yaml
-- path: apicast.yaml
+##- path: apicast.yaml
 - path: services.yaml

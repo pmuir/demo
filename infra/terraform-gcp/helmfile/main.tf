@@ -58,9 +58,11 @@ resource "random_password" "mysql_password" {
 }
 
 resource "google_secret_manager_secret" "mysql_password" {
-  provider = google-beta
-
   secret_id = "mysql-password"
+
+  labels = {
+    generated = "true"
+  }
 
   replication {
     automatic = true

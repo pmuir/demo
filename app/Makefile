@@ -2,19 +2,19 @@ TAG:=v$(shell date +'%s')
 
 .PHONY: deploy
 deploy: publish
-	helmfile --file ./charts/helmfile.yaml apply
+	helmfile --file ./charts/helmfile.yaml sync
 
 .PHONY: deploy-frontend
 deploy-frontend: publish-frontend
-	helmfile --file ./charts/helmfile.yaml apply
+	helmfile --file ./charts/helmfile.yaml sync
 
 .PHONY: deploy-backend
 deploy-backend: publish-backend
-	helmfile --file ./charts/helmfile.yaml apply
+	helmfile --file ./charts/helmfile.yaml sync
 
 .PHONY: deploy-new-customer
 deploy-new-customer: publish-new-customer
-	helmfile --file ./charts/helmfile.yaml apply
+	helmfile --file ./charts/helmfile.yaml sync
 
 .PHONY: publish-frontend
 publish-frontend:

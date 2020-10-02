@@ -1,6 +1,6 @@
 releases:
 - name: olm-crds
   chart: ./charts/olm-crds
-  namespace: olm-definition
+  namespace: default
   createNamespace: true
   wait: true

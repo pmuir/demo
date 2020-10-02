@@ -1,5 +1,5 @@
 locals {
-  gcp_project = "pmuir-dev"
+  gcp_project = "pmuir-dev-291208"
   cluster_name = "demo-cluster"
   region = "europe-west1"
   zone = "europe-west1-b"

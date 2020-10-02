@@ -60,9 +60,11 @@ resource "google_service_account_key" "service_account_key" {
 }
 
 resource "google_secret_manager_secret" "database_password" {
-  provider = google-beta
-
   secret_id = local.password_secret_id
+
+  labels = {
+    generated = "true"
+  }
 
   replication {
     automatic = true
@@ -88,6 +90,10 @@ resource "google_secret_manager_secret" "mysql_properties" {
 
   secret_id = local.mysql_properties_secret_id
 
+  labels = {
+    generated = "true"
+  }
+
   replication {
     automatic = true
   }
@@ -107,9 +113,11 @@ resource "google_secret_manager_secret_version" "mysql_properties_version" {
 }
 
 resource "google_secret_manager_secret" "database_service_account_key" {
-  provider = google-beta
-
   secret_id = local.database_service_account_key_secret_id
+
+  labels = {
+    generated = "true"
+  }
 
   replication {
     automatic = true

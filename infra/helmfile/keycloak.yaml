@@ -1,6 +1,3 @@
-repositories:
-- name: incubator
-  url:  https://kubernetes-charts-incubator.storage.googleapis.cokub
 releases:
 - name: keycloak
   namespace: olm
